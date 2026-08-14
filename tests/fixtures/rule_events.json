@@ -1,0 +1,17 @@
+{
+  "events": [
+    {"metadata": {"id": "a1", "event_type": "USER_LOGIN", "event_timestamp": "2026-03-15T10:00:00.000Z"}, "target": {"user": {"userid": "alice"}}, "security_result": [{"action": "BLOCK"}]},
+    {"metadata": {"id": "a2", "event_type": "USER_LOGIN", "event_timestamp": "2026-03-15T10:01:00.000Z"}, "target": {"user": {"userid": "alice"}}, "security_result": [{"action": "BLOCK"}]},
+    {"metadata": {"id": "a3", "event_type": "USER_LOGIN", "event_timestamp": "2026-03-15T10:02:00.000Z"}, "target": {"user": {"userid": "alice"}}, "security_result": [{"action": "BLOCK"}]},
+    {"metadata": {"id": "a4", "event_type": "USER_LOGIN", "event_timestamp": "2026-03-15T10:03:00.000Z"}, "target": {"user": {"userid": "alice"}}, "security_result": [{"action": "BLOCK"}]},
+    {"metadata": {"id": "a5", "event_type": "USER_LOGIN", "event_timestamp": "2026-03-15T10:04:00.000Z"}, "target": {"user": {"userid": "alice"}}, "security_result": [{"action": "BLOCK"}]},
+    {"metadata": {"id": "a6", "event_type": "USER_LOGIN", "event_timestamp": "2026-03-15T10:05:00.000Z"}, "target": {"user": {"userid": "alice"}}, "security_result": [{"action": "BLOCK"}]},
+
+    {"metadata": {"id": "b1", "event_type": "USER_LOGIN", "event_timestamp": "2026-03-15T10:00:00.000Z"}, "target": {"user": {"userid": "bob"}}, "security_result": [{"action": "BLOCK"}]},
+
+    {"metadata": {"id": "c1", "event_type": "USER_LOGIN", "event_timestamp": "2026-03-15T09:00:00.000Z"}, "principal": {"user": {"userid": "carol"}}, "security_result": [{"action": "ALLOW"}]},
+    {"metadata": {"id": "c2", "event_type": "FILE_CREATION", "event_timestamp": "2026-03-15T09:02:00.000Z"}, "principal": {"user": {"userid": "carol"}}},
+
+    {"metadata": {"id": "d1", "event_type": "USER_LOGIN", "event_timestamp": "2026-03-15T08:00:00.000Z"}, "target": {"user": {"userid": "dave"}}, "security_result": [{"action": "ALLOW"}]}
+  ]
+}

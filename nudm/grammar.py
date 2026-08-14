@@ -37,21 +37,34 @@ body         = line (body_sep !section_hdr line)*
 body_sep     = nl / ~r"[ \t\r]+"
 line         = assign / or_expr
 assign       = variable _ "=" _ assign_rhs
-assign_rhs   = func_call / bare_path
+# field_ref (not just bare_path) so a rule's placeholder join idiom
+# ($placeholder = $evar.field.path, an event-variable-prefixed RHS) is
+# recognized as an assignment rather than falling through to or_expr and
+# being parsed as an ordinary (and, for a rule, meaningless) comparison.
+assign_rhs   = func_call / field_ref
 
 # A section header keyword followed by ':' — used as a lookahead to stop a
 # section's item list from swallowing the next section's header as if it
 # were one more bare field/continuation (all these keywords are otherwise
-# syntactically valid bare field names).
-section_hdr  = ~r"(events|match|outcome|dedup|order|limit)(?![A-Za-z0-9_])"i _ ":"
+# syntactically valid bare field names). ``condition``/``meta``/``options``
+# are included so the rule_grammar module (which reuses body/match_list/
+# outcome_list as-is) also stops correctly at a YARA-L rule's own section
+# boundaries.
+section_hdr  = ~r"(events|match|outcome|dedup|order|limit|condition|meta|options)(?![A-Za-z0-9_])"i _ ":"
 
 match_sec    = _ ~r"match(?![A-Za-z0-9_])"i _ ":" _ match_list
 match_list   = match_item (match_sep !section_hdr match_item)*
 match_sep    = "," _ / nl
 match_item   = match_expr time_grain?
 match_expr   = variable / field_ref
-time_grain   = _ grain_kw _ first_kw? grain_qty? grain_unit
-grain_kw     = (~r"over(?![A-Za-z0-9_])"i _ ~r"every(?![A-Za-z0-9_])"i) / ~r"by(?![A-Za-z0-9_])"i
+time_grain   = _ grain_kw _ first_kw? grain_qty? grain_unit anchor_clause?
+grain_kw     = (~r"over(?![A-Za-z0-9_])"i (_ ~r"every(?![A-Za-z0-9_])"i)?) / ~r"by(?![A-Za-z0-9_])"i
+# YARA-L rule pivot window (e.g. "over 10m after $login"): the window is
+# anchored to a specific other event variable's own timestamp rather than
+# a plain time bucket. Meaningless for a single-stream search-bar query
+# (nothing else to anchor to) but harmless to accept there too.
+anchor_clause = _ anchor_dir _ variable
+anchor_dir    = ~r"(before|after)(?![A-Za-z0-9_])"i
 first_kw     = ~r"first(?![A-Za-z0-9_])"i _
 grain_qty    = ~r"[0-9]+" _
 grain_unit   = ~r"(minutes?|mins?|min|hours?|hrs?|hr|days?|weeks?|wks?|months?|mos?|mo|m|h|d|w)(?![A-Za-z0-9_])"i
@@ -87,7 +100,11 @@ op           = "<=" / ">=" / "!=" / "=" / "<" / ">" / ~r"in(?![A-Za-z0-9_])"i
 
 lhs_expr     = func_call / variable / field_ref / literal
 rhs_expr     = func_call / list_ref / variable / literal / field_ref
-expr         = func_call / list_ref / variable / field_ref / literal
+# ``or_expr`` is tried before ``list_ref``/``field_ref``/``literal`` so a
+# function argument may be a full boolean condition (e.g. ``if(x > 1, ...)``);
+# it fails cleanly (no partial match) on a bare literal like ``90``, which
+# falls through to ``literal`` below.
+expr         = func_call / or_expr / list_ref / variable / field_ref / literal
 
 func_call    = func_name "(" _ arg_list? ")"
 func_name    = ident ("." ident)*

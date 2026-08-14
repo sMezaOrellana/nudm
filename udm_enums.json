@@ -1,0 +1,5200 @@
+{
+  "source": "https://docs.cloud.google.com/chronicle/docs/reference/udm-field-list",
+  "enums": {
+    "EntityMetadata.EntityType": [
+      {
+        "name": "ASSET",
+        "number": 1,
+        "description": "An asset, such as workstation, laptop, phone, virtual machine, etc."
+      },
+      {
+        "name": "USER",
+        "number": 10000,
+        "description": "User."
+      },
+      {
+        "name": "GROUP",
+        "number": 10001,
+        "description": "Group."
+      },
+      {
+        "name": "RESOURCE",
+        "number": 2,
+        "description": "Resource."
+      },
+      {
+        "name": "IP_ADDRESS",
+        "number": 3,
+        "description": "An external IP address."
+      },
+      {
+        "name": "CIDR_BLOCK",
+        "number": 9,
+        "description": "A CIDR block."
+      },
+      {
+        "name": "FILE",
+        "number": 4,
+        "description": "A file."
+      },
+      {
+        "name": "DOMAIN_NAME",
+        "number": 5,
+        "description": "A domain."
+      },
+      {
+        "name": "URL",
+        "number": 6,
+        "description": "A url."
+      },
+      {
+        "name": "MUTEX",
+        "number": 7,
+        "description": "A mutex."
+      },
+      {
+        "name": "METRIC",
+        "number": 8,
+        "description": "A metric."
+      },
+      {
+        "name": "AI",
+        "number": 10,
+        "description": "An AI system (Model, agent, tool, etc.)"
+      }
+    ],
+    "EntityMetadata.SourceType": [
+      {
+        "name": "SOURCE_TYPE_UNSPECIFIED",
+        "number": 0,
+        "description": "Default source type"
+      },
+      {
+        "name": "ENTITY_CONTEXT",
+        "number": 1,
+        "description": "Entities ingested from customers (e.g. AD_CONTEXT, DLP_CONTEXT)"
+      },
+      {
+        "name": "DERIVED_CONTEXT",
+        "number": 2,
+        "description": "Entities derived from customer data such as prevalence, artifact first/last seen, or asset/user first seen stats."
+      },
+      {
+        "name": "GLOBAL_CONTEXT",
+        "number": 3,
+        "description": "Global contextual entities such as WHOIS or Safe Browsing."
+      }
+    ],
+    "Metric.AggregateFunction": [
+      {
+        "name": "AGGREGATE_FUNCTION_UNSPECIFIED",
+        "number": 0,
+        "description": "Default value."
+      },
+      {
+        "name": "MIN",
+        "number": 1,
+        "description": "Minimum."
+      },
+      {
+        "name": "MAX",
+        "number": 2,
+        "description": "Maximum."
+      },
+      {
+        "name": "COUNT",
+        "number": 3,
+        "description": "Count."
+      },
+      {
+        "name": "SUM",
+        "number": 4,
+        "description": "Sum."
+      },
+      {
+        "name": "AVG",
+        "number": 5,
+        "description": "Average."
+      },
+      {
+        "name": "STDDEV",
+        "number": 6,
+        "description": "Standard Deviation."
+      }
+    ],
+    "Metric.Dimension": [
+      {
+        "name": "DIMENSION_UNSPECIFIED",
+        "number": 0,
+        "description": "Default"
+      },
+      {
+        "name": "PRINCIPAL_DEVICE",
+        "number": 1,
+        "description": "Principal Device"
+      },
+      {
+        "name": "TARGET_USER",
+        "number": 2,
+        "description": "Target User"
+      },
+      {
+        "name": "TARGET_DEVICE",
+        "number": 3,
+        "description": "Target Device"
+      },
+      {
+        "name": "PRINCIPAL_USER",
+        "number": 4,
+        "description": "Principal User"
+      },
+      {
+        "name": "TARGET_IP",
+        "number": 5,
+        "description": "Target IP"
+      },
+      {
+        "name": "PRINCIPAL_FILE_HASH",
+        "number": 6,
+        "description": "Principal File Hash"
+      },
+      {
+        "name": "PRINCIPAL_COUNTRY",
+        "number": 7,
+        "description": "Principal Country"
+      },
+      {
+        "name": "SECURITY_CATEGORY",
+        "number": 8,
+        "description": "Security Category"
+      },
+      {
+        "name": "NETWORK_ASN",
+        "number": 9,
+        "description": "Network ASN"
+      },
+      {
+        "name": "CLIENT_CERTIFICATE_HASH",
+        "number": 10,
+        "description": "Client Certificate Hash"
+      },
+      {
+        "name": "DNS_QUERY_TYPE",
+        "number": 11,
+        "description": "DNS Query Type"
+      },
+      {
+        "name": "DNS_DOMAIN",
+        "number": 12,
+        "description": "DNS Domain"
+      },
+      {
+        "name": "HTTP_USER_AGENT",
+        "number": 13,
+        "description": "HTTP User Agent"
+      },
+      {
+        "name": "EVENT_TYPE",
+        "number": 14,
+        "description": "Event Type"
+      },
+      {
+        "name": "PRODUCT_NAME",
+        "number": 15,
+        "description": "Product Name"
+      },
+      {
+        "name": "PRODUCT_EVENT_TYPE",
+        "number": 16,
+        "description": "Product Event Type"
+      },
+      {
+        "name": "PARENT_FOLDER_PATH",
+        "number": 17,
+        "description": "Parent Folder Path"
+      },
+      {
+        "name": "TARGET_RESOURCE_NAME",
+        "number": 18,
+        "description": "Target resource Name"
+      },
+      {
+        "name": "PRINCIPAL_APPLICATION",
+        "number": 19,
+        "description": "Principal Application."
+      },
+      {
+        "name": "TARGET_APPLICATION",
+        "number": 20,
+        "description": "Target Application."
+      },
+      {
+        "name": "EMAIL_TO_ADDRESS",
+        "number": 21,
+        "description": "Email To Address."
+      },
+      {
+        "name": "EMAIL_FROM_ADDRESS",
+        "number": 22,
+        "description": "Email From Address."
+      },
+      {
+        "name": "MAIL_ID",
+        "number": 23,
+        "description": "Mail Id."
+      },
+      {
+        "name": "PRINCIPAL_IP",
+        "number": 24,
+        "description": "Principal IP."
+      },
+      {
+        "name": "SECURITY_ACTION",
+        "number": 25,
+        "description": "Security Action."
+      },
+      {
+        "name": "SECURITY_RULE_ID",
+        "number": 28,
+        "description": "Security Rule Id."
+      },
+      {
+        "name": "TARGET_NETWORK_ORGANIZATION_NAME",
+        "number": 29,
+        "description": "Target Network Organization name."
+      },
+      {
+        "name": "PRINCIPAL_NETWORK_ORGANIZATION_NAME",
+        "number": 30,
+        "description": "Principal Network Organization name."
+      },
+      {
+        "name": "PRINCIPAL_PROCESS_FILE_PATH",
+        "number": 31,
+        "description": "Principal Process File Path."
+      },
+      {
+        "name": "PRINCIPAL_PROCESS_FILE_HASH",
+        "number": 32,
+        "description": "Principal Process File SHA256 Hash."
+      },
+      {
+        "name": "SECURITY_RESULT_RULE_NAME",
+        "number": 33,
+        "description": "Security Result rule name."
+      },
+      {
+        "name": "TARGET_RESOURCE_LABEL_KEY",
+        "number": 34,
+        "description": "Target Resource label key."
+      },
+      {
+        "name": "VENDOR_NAME",
+        "number": 35,
+        "description": "Vendor name."
+      },
+      {
+        "name": "TARGET_RESOURCE_TYPE",
+        "number": 36,
+        "description": "Target Resource type."
+      },
+      {
+        "name": "TARGET_LOCATION_NAME",
+        "number": 37,
+        "description": "Target Location name."
+      },
+      {
+        "name": "LOG_TYPE",
+        "number": 38,
+        "description": "Log type."
+      },
+      {
+        "name": "TARGET_HOSTNAME",
+        "number": 39,
+        "description": "Target Hostname."
+      }
+    ],
+    "Metric.MetricName": [
+      {
+        "name": "METRIC_NAME_UNSPECIFIED",
+        "number": 0,
+        "description": "Default"
+      },
+      {
+        "name": "NETWORK_BYTES_INBOUND",
+        "number": 1,
+        "description": "Total received network bytes."
+      },
+      {
+        "name": "NETWORK_BYTES_OUTBOUND",
+        "number": 2,
+        "description": "Total network sent bytes."
+      },
+      {
+        "name": "NETWORK_BYTES_TOTAL",
+        "number": 3,
+        "description": "Total network sent bytes and received bytes."
+      },
+      {
+        "name": "AUTH_ATTEMPTS_SUCCESS",
+        "number": 4,
+        "description": "Successful authentication attempts."
+      },
+      {
+        "name": "AUTH_ATTEMPTS_FAIL",
+        "number": 5,
+        "description": "Failed authentication attempts."
+      },
+      {
+        "name": "AUTH_ATTEMPTS_TOTAL",
+        "number": 6,
+        "description": "Total authentication attempts."
+      },
+      {
+        "name": "DNS_BYTES_OUTBOUND",
+        "number": 7,
+        "description": "Total number of sent bytes for DNS events."
+      },
+      {
+        "name": "NETWORK_FLOWS_INBOUND",
+        "number": 8,
+        "description": "Total number of events having non-null received bytes."
+      },
+      {
+        "name": "NETWORK_FLOWS_OUTBOUND",
+        "number": 9,
+        "description": "Total number of events having non-null sent bytes."
+      },
+      {
+        "name": "NETWORK_FLOWS_TOTAL",
+        "number": 10,
+        "description": "Total events having non-null sent or received bytes."
+      },
+      {
+        "name": "DNS_QUERIES_SUCCESS",
+        "number": 11,
+        "description": "DNS query success count - Number of events with response_code = 0."
+      },
+      {
+        "name": "DNS_QUERIES_FAIL",
+        "number": 12,
+        "description": "Number of events with response_code != 0."
+      },
+      {
+        "name": "DNS_QUERIES_TOTAL",
+        "number": 13,
+        "description": "Total number of DNS queries made."
+      },
+      {
+        "name": "FILE_EXECUTIONS_SUCCESS",
+        "number": 14,
+        "description": "Number of successful file executions."
+      },
+      {
+        "name": "FILE_EXECUTIONS_FAIL",
+        "number": 15,
+        "description": "Number of failed file executions."
+      },
+      {
+        "name": "FILE_EXECUTIONS_TOTAL",
+        "number": 16,
+        "description": "Total number file executions."
+      },
+      {
+        "name": "HTTP_QUERIES_SUCCESS",
+        "number": 17,
+        "description": "Number of successful HTTP queries."
+      },
+      {
+        "name": "HTTP_QUERIES_FAIL",
+        "number": 18,
+        "description": "Number of failed HTTP queries."
+      },
+      {
+        "name": "HTTP_QUERIES_TOTAL",
+        "number": 19,
+        "description": "Total number of HTTP queries."
+      },
+      {
+        "name": "WORKSPACE_EMAILS_SENT_TOTAL",
+        "number": 20,
+        "description": "Total number of emails sent in Google Workspace."
+      },
+      {
+        "name": "WORKSPACE_TOTAL_DOWNLOAD_ACTIONS",
+        "number": 21,
+        "description": "Total number of download actions in Google Workspace."
+      },
+      {
+        "name": "WORKSPACE_TOTAL_CHANGE_ACTIONS",
+        "number": 22,
+        "description": "Total number of change actions in Google Workspace."
+      },
+      {
+        "name": "WORKSPACE_AUTH_ATTEMPTS_TOTAL",
+        "number": 23,
+        "description": "Total number of authentication attempts in Google Workspace."
+      },
+      {
+        "name": "WORKSPACE_NETWORK_BYTES_OUTBOUND",
+        "number": 24,
+        "description": "Number of outbound network bytes (total sent) in Google Workspace."
+      },
+      {
+        "name": "WORKSPACE_NETWORK_BYTES_TOTAL",
+        "number": 25,
+        "description": "Total number of network bytes (both sent and received) in Google Workspace."
+      },
+      {
+        "name": "ALERT_EVENT_NAME_COUNT",
+        "number": 26,
+        "description": "Track number of alerts fired by EDR/SENTINEL/MICROSOFT_GRAPH."
+      },
+      {
+        "name": "RESOURCE_CREATION_TOTAL",
+        "number": 27,
+        "description": "Analytic tracking successful resource creations."
+      },
+      {
+        "name": "RESOURCE_CREATION_SUCCESS",
+        "number": 28,
+        "description": "Analytic tracking successful resource creations."
+      },
+      {
+        "name": "RESOURCE_READ_SUCCESS",
+        "number": 29,
+        "description": "Analytic tracking successful resource reads."
+      },
+      {
+        "name": "RESOURCE_READ_FAIL",
+        "number": 30,
+        "description": "Analytic tracking failed resource reads."
+      },
+      {
+        "name": "RESOURCE_DELETION_SUCCESS",
+        "number": 31,
+        "description": "Analytic tracking successful resource deletions."
+      },
+      {
+        "name": "RESOURCE_CREATION_FAIL",
+        "number": 32,
+        "description": "Analytic tracking failed resource creations."
+      },
+      {
+        "name": "RESOURCE_DELETION_FAIL",
+        "number": 33,
+        "description": "Analytic tracking failed resource deletions."
+      },
+      {
+        "name": "RESOURCE_DELETION_TOTAL",
+        "number": 34,
+        "description": "Analytic tracking total resource deletions."
+      },
+      {
+        "name": "RESOURCE_READ_TOTAL",
+        "number": 35,
+        "description": "Analytic tracking total resource reads."
+      },
+      {
+        "name": "RESOURCE_WRITTEN_FAIL",
+        "number": 36,
+        "description": "Analytic tracking failed resource writes."
+      },
+      {
+        "name": "RESOURCE_WRITTEN_SUCCESS",
+        "number": 37,
+        "description": "Analytic tracking successful resource writes."
+      },
+      {
+        "name": "RESOURCE_WRITTEN_TOTAL",
+        "number": 38,
+        "description": "Analytic tracking total resource writes."
+      },
+      {
+        "name": "UDM_DATA_PRESENCE_SUMMARY",
+        "number": 39,
+        "description": "UDM data summary tracking unique values of dimensions."
+      }
+    ],
+    "Relation.Directionality": [
+      {
+        "name": "DIRECTIONALITY_UNSPECIFIED",
+        "number": 0,
+        "description": "Default value."
+      },
+      {
+        "name": "BIDIRECTIONAL",
+        "number": 1,
+        "description": "Modeled in both directions. Primary entity (a) to related entity (b) and related entity (b) to primary entity (a)."
+      },
+      {
+        "name": "UNIDIRECTIONAL",
+        "number": 2,
+        "description": "Modeled in a single direction. Primary entity (a) to related entity (b)."
+      }
+    ],
+    "Relation.EntityLabel": [
+      {
+        "name": "ENTITY_LABEL_UNSPECIFIED",
+        "number": 0,
+        "description": "Default value."
+      },
+      {
+        "name": "PRINCIPAL",
+        "number": 1,
+        "description": "The Noun represents a principal type object."
+      },
+      {
+        "name": "TARGET",
+        "number": 2,
+        "description": "The Noun represents a target type object."
+      },
+      {
+        "name": "OBSERVER",
+        "number": 3,
+        "description": "The Noun represents an observer type object."
+      },
+      {
+        "name": "SRC",
+        "number": 4,
+        "description": "The Noun represents src type object."
+      },
+      {
+        "name": "NETWORK",
+        "number": 5,
+        "description": "The Noun represents a network type object."
+      },
+      {
+        "name": "SECURITY_RESULT",
+        "number": 6,
+        "description": "The Noun represents a SecurityResult object."
+      },
+      {
+        "name": "INTERMEDIARY",
+        "number": 7,
+        "description": "The Noun represents an intermediary type object."
+      }
+    ],
+    "Relation.Relationship": [
+      {
+        "name": "RELATIONSHIP_UNSPECIFIED",
+        "number": 0,
+        "description": "Default value"
+      },
+      {
+        "name": "OWNS",
+        "number": 1,
+        "description": "Related entity is owned by the primary entity (e.g. user owns device asset)."
+      },
+      {
+        "name": "ADMINISTERS",
+        "number": 2,
+        "description": "Related entity is administered by the primary entity (e.g. user administers a group)."
+      },
+      {
+        "name": "MEMBER",
+        "number": 3,
+        "description": "Primary entity is a member of the related entity (e.g. user is a member of a group)."
+      },
+      {
+        "name": "EXECUTES",
+        "number": 4,
+        "description": "Primary entity may have executed the related entity."
+      },
+      {
+        "name": "DOWNLOADED_FROM",
+        "number": 5,
+        "description": "Primary entity may have been downloaded from the related entity."
+      },
+      {
+        "name": "CONTACTS",
+        "number": 6,
+        "description": "Primary entity contacts the related entity."
+      }
+    ],
+    "Ai.AiType": [
+      {
+        "name": "AI_TYPE_UNSPECIFIED",
+        "number": 0,
+        "description": "Default value."
+      },
+      {
+        "name": "MODEL",
+        "number": 1,
+        "description": "A foundational or fine-tuned language, vision, or multi-modal model. For example, the Gemini multi-modal LLM."
+      },
+      {
+        "name": "AGENT",
+        "number": 2,
+        "description": "An autonomous agent that uses one or more models or tools to perform tasks. Example: A SOAR agent that investigates security incidents."
+      },
+      {
+        "name": "TOOL",
+        "number": 3,
+        "description": "A specific capability or tool exposed by an AI system. Example: An MCP server or a specific function exposed by an agent."
+      }
+    ],
+    "Asset.AssetType": [
+      {
+        "name": "ROLE_UNSPECIFIED",
+        "number": 0,
+        "description": "Unspecified asset role."
+      },
+      {
+        "name": "WORKSTATION",
+        "number": 1,
+        "description": "A workstation or desktop."
+      },
+      {
+        "name": "LAPTOP",
+        "number": 2,
+        "description": "A laptop computer."
+      },
+      {
+        "name": "IOT",
+        "number": 3,
+        "description": "An IOT asset."
+      },
+      {
+        "name": "NETWORK_ATTACHED_STORAGE",
+        "number": 4,
+        "description": "A network attached storage device."
+      },
+      {
+        "name": "PRINTER",
+        "number": 5,
+        "description": "A printer."
+      },
+      {
+        "name": "SCANNER",
+        "number": 6,
+        "description": "A scanner."
+      },
+      {
+        "name": "SERVER",
+        "number": 7,
+        "description": "A server."
+      },
+      {
+        "name": "TAPE_LIBRARY",
+        "number": 8,
+        "description": "A tape library device."
+      },
+      {
+        "name": "MOBILE",
+        "number": 9,
+        "description": "A mobile device such as a mobile phone or PDA."
+      }
+    ],
+    "Asset.DeploymentStatus": [
+      {
+        "name": "DEPLOYMENT_STATUS_UNSPECIFIED",
+        "number": 0,
+        "description": "Unspecified deployment status."
+      },
+      {
+        "name": "ACTIVE",
+        "number": 1,
+        "description": "Asset is active, functional and deployed."
+      },
+      {
+        "name": "PENDING_DECOMMISSION",
+        "number": 2,
+        "description": "Asset is pending decommission and no longer deployed."
+      },
+      {
+        "name": "DECOMMISSIONED",
+        "number": 3,
+        "description": "Asset is decommissioned."
+      }
+    ],
+    "Authentication.AuthType": [
+      {
+        "name": "AUTHTYPE_UNSPECIFIED",
+        "number": 0,
+        "description": "The default type."
+      },
+      {
+        "name": "MACHINE",
+        "number": 1,
+        "description": "A machine authentication."
+      },
+      {
+        "name": "SSO",
+        "number": 2,
+        "description": "An SSO authentication."
+      },
+      {
+        "name": "VPN",
+        "number": 3,
+        "description": "A VPN authentication."
+      },
+      {
+        "name": "PHYSICAL",
+        "number": 4,
+        "description": "A Physical authentication (e.g. \"Badge reader\")."
+      },
+      {
+        "name": "TACACS",
+        "number": 5,
+        "description": "A TACACS family protocol for networked systems authentication (e.g. TACACS, TACACS+)."
+      }
+    ],
+    "Authentication.AuthenticationStatus": [
+      {
+        "name": "UNKNOWN_AUTHENTICATION_STATUS",
+        "number": 0,
+        "description": "The default authentication status."
+      },
+      {
+        "name": "ACTIVE",
+        "number": 1,
+        "description": "The authentication method is in active state."
+      },
+      {
+        "name": "SUSPENDED",
+        "number": 2,
+        "description": "The authentication method is in suspended/disabled state."
+      },
+      {
+        "name": "NO_ACTIVE_CREDENTIALS",
+        "number": 3,
+        "description": "The authentication method has no active credentials."
+      },
+      {
+        "name": "DELETED",
+        "number": 4,
+        "description": "The authentication method has been deleted."
+      }
+    ],
+    "Authentication.Mechanism": [
+      {
+        "name": "MECHANISM_UNSPECIFIED",
+        "number": 0,
+        "description": "The default mechanism."
+      },
+      {
+        "name": "USERNAME_PASSWORD",
+        "number": 1,
+        "description": "Username + password authentication."
+      },
+      {
+        "name": "OTP",
+        "number": 2,
+        "description": "OTP authentication."
+      },
+      {
+        "name": "HARDWARE_KEY",
+        "number": 3,
+        "description": "Hardware key authentication."
+      },
+      {
+        "name": "LOCAL",
+        "number": 4,
+        "description": "Local authentication."
+      },
+      {
+        "name": "REMOTE",
+        "number": 5,
+        "description": "Remote authentication."
+      },
+      {
+        "name": "REMOTE_INTERACTIVE",
+        "number": 6,
+        "description": "RDP, Terminal Services, or VNC."
+      },
+      {
+        "name": "MECHANISM_OTHER",
+        "number": 7,
+        "description": "Some other mechanism that is not defined here."
+      },
+      {
+        "name": "BADGE_READER",
+        "number": 8,
+        "description": "Badge reader authentication"
+      },
+      {
+        "name": "NETWORK",
+        "number": 9,
+        "description": "Network authentication."
+      },
+      {
+        "name": "BATCH",
+        "number": 10,
+        "description": "Batch authentication."
+      },
+      {
+        "name": "SERVICE",
+        "number": 11,
+        "description": "Service authentication"
+      },
+      {
+        "name": "UNLOCK",
+        "number": 12,
+        "description": "Direct human-interactive unlock authentication."
+      },
+      {
+        "name": "NETWORK_CLEAR_TEXT",
+        "number": 13,
+        "description": "Network clear text authentication."
+      },
+      {
+        "name": "NEW_CREDENTIALS",
+        "number": 14,
+        "description": "Authentication with new credentials."
+      },
+      {
+        "name": "INTERACTIVE",
+        "number": 15,
+        "description": "Interactive authentication."
+      },
+      {
+        "name": "CACHED_INTERACTIVE",
+        "number": 16,
+        "description": "Interactive authentication using cached credentials."
+      },
+      {
+        "name": "CACHED_REMOTE_INTERACTIVE",
+        "number": 17,
+        "description": "Cached Remote Interactive authentication using cached credentials."
+      },
+      {
+        "name": "CACHED_UNLOCK",
+        "number": 18,
+        "description": "Cached Remote Interactive authentication using cached credentials."
+      },
+      {
+        "name": "BIOMETRIC",
+        "number": 19,
+        "description": "Biometric device such as a fingerprint reader."
+      },
+      {
+        "name": "WEARABLE",
+        "number": 20,
+        "description": "Wearable such as an Apple Watch."
+      }
+    ],
+    "Authentication.Outcome": [
+      {
+        "name": "OUTCOME_UNSPECIFIED",
+        "number": 0,
+        "description": "The default outcome."
+      },
+      {
+        "name": "SUCCESS",
+        "number": 1,
+        "description": "The authentication was successful."
+      },
+      {
+        "name": "FAILURE",
+        "number": 2,
+        "description": "The authentication failed."
+      }
+    ],
+    "Browser.BrowserType": [
+      {
+        "name": "BROWSER_TYPE_UNSPECIFIED",
+        "number": 0,
+        "description": "Default value."
+      },
+      {
+        "name": "CHROME",
+        "number": 1,
+        "description": "Chrome."
+      },
+      {
+        "name": "FIREFOX",
+        "number": 2,
+        "description": "Firefox."
+      },
+      {
+        "name": "SAFARI",
+        "number": 3,
+        "description": "Safari."
+      },
+      {
+        "name": "INTERNET_EXPLORER",
+        "number": 4,
+        "description": "Internet Explorer."
+      },
+      {
+        "name": "EDGE",
+        "number": 5,
+        "description": "Edge."
+      },
+      {
+        "name": "OPERA",
+        "number": 6,
+        "description": "Opera."
+      }
+    ],
+    "Browser.Cookie.CookieSameSite": [
+      {
+        "name": "COOKIE_SAME_SITE_UNSPECIFIED",
+        "number": 0,
+        "description": "Default value."
+      },
+      {
+        "name": "STRICT",
+        "number": 1,
+        "description": "Corresponds to SameSite=Strict."
+      },
+      {
+        "name": "LAX",
+        "number": 2,
+        "description": "Corresponds to SameSite=Lax."
+      },
+      {
+        "name": "NONE",
+        "number": 3,
+        "description": "Corresponds to SameSite=None."
+      }
+    ],
+    "Browser.UrlVisitType": [
+      {
+        "name": "URL_VISIT_TYPE_UNSPECIFIED",
+        "number": 0,
+        "description": "Default value."
+      },
+      {
+        "name": "LINK",
+        "number": 1,
+        "description": "The user clicked a link."
+      },
+      {
+        "name": "TYPED",
+        "number": 2,
+        "description": "The user typed a URL."
+      },
+      {
+        "name": "AUTO_BOOKMARK",
+        "number": 3,
+        "description": "The user bookmarked the URL."
+      },
+      {
+        "name": "AUTO_SUBFRAME",
+        "number": 4,
+        "description": "Loaded in a nested subframe by the parent frame."
+      },
+      {
+        "name": "MANUAL_SUBFRAME",
+        "number": 5,
+        "description": "Loaded in a nested subframe by the user."
+      },
+      {
+        "name": "GENERATED",
+        "number": 6,
+        "description": "The user clicked on auto generated link in browser address bar."
+      },
+      {
+        "name": "AUTO_TOPLEVEL",
+        "number": 7,
+        "description": "The page was loaded through command line or is the starting page."
+      },
+      {
+        "name": "FORM_SUBMIT",
+        "number": 8,
+        "description": "The user submitted a form."
+      },
+      {
+        "name": "RELOAD",
+        "number": 9,
+        "description": "The user reloaded the page."
+      },
+      {
+        "name": "KEYWORD",
+        "number": 10,
+        "description": "The Url was generated by a keyword search configured by user."
+      },
+      {
+        "name": "KEYWORD_GENERATED",
+        "number": 11,
+        "description": "Corresponds to a visit generated by a keyword search."
+      },
+      {
+        "name": "REDIRECT",
+        "number": 12,
+        "description": "The user was redirected to the URL."
+      }
+    ],
+    "Browser.VisitSource": [
+      {
+        "name": "VISIT_SOURCE_UNSPECIFIED",
+        "number": 0,
+        "description": "Default value."
+      },
+      {
+        "name": "SYNCED",
+        "number": 1,
+        "description": "The visit was synced from another device."
+      },
+      {
+        "name": "BROWSER",
+        "number": 2,
+        "description": "The visit was from a browser."
+      },
+      {
+        "name": "EXTENSION",
+        "number": 3,
+        "description": "The visit was from an extension."
+      },
+      {
+        "name": "IMPORTED",
+        "number": 4,
+        "description": "The visit was imported from another browser application."
+      }
+    ],
+    "Cloud.CloudEnvironment": [
+      {
+        "name": "UNSPECIFIED_CLOUD_ENVIRONMENT",
+        "number": 0,
+        "description": "Default."
+      },
+      {
+        "name": "GOOGLE_CLOUD_PLATFORM",
+        "number": 1,
+        "description": "Google Cloud Platform."
+      },
+      {
+        "name": "AMAZON_WEB_SERVICES",
+        "number": 2,
+        "description": "Amazon Web Services."
+      },
+      {
+        "name": "MICROSOFT_AZURE",
+        "number": 3,
+        "description": "Microsoft Azure."
+      }
+    ],
+    "Dhcp.MessageType": [
+      {
+        "name": "UNKNOWN_MESSAGE_TYPE",
+        "number": 0,
+        "description": "Default message type."
+      },
+      {
+        "name": "DISCOVER",
+        "number": 1,
+        "description": "DHCPDISCOVER."
+      },
+      {
+        "name": "OFFER",
+        "number": 2,
+        "description": "DHCPOFFER."
+      },
+      {
+        "name": "REQUEST",
+        "number": 3,
+        "description": "DHCPREQUEST."
+      },
+      {
+        "name": "DECLINE",
+        "number": 4,
+        "description": "DHCPDECLINE."
+      },
+      {
+        "name": "ACK",
+        "number": 5,
+        "description": "DHCPACK."
+      },
+      {
+        "name": "NAK",
+        "number": 6,
+        "description": "DHCPNAK."
+      },
+      {
+        "name": "RELEASE",
+        "number": 7,
+        "description": "DHCPRELEASE."
+      },
+      {
+        "name": "INFORM",
+        "number": 8,
+        "description": "DHCPINFORM."
+      },
+      {
+        "name": "WIN_DELETED",
+        "number": 100,
+        "description": "Microsoft Windows DHCP \"lease deleted\"."
+      },
+      {
+        "name": "WIN_EXPIRED",
+        "number": 101,
+        "description": "Microsoft Windows DHCP \"lease expired\"."
+      }
+    ],
+    "Dhcp.OpCode": [
+      {
+        "name": "UNKNOWN_OPCODE",
+        "number": 0,
+        "description": "Default opcode."
+      },
+      {
+        "name": "BOOTREQUEST",
+        "number": 1,
+        "description": "Request."
+      },
+      {
+        "name": "BOOTREPLY",
+        "number": 2,
+        "description": "Reply."
+      }
+    ],
+    "File.FileType": [
+      {
+        "name": "FILE_TYPE_UNSPECIFIED",
+        "number": 0,
+        "description": "File type is UNSPECIFIED."
+      },
+      {
+        "name": "FILE_TYPE_PE_EXE",
+        "number": 1,
+        "description": "File type is PE_EXE."
+      },
+      {
+        "name": "FILE_TYPE_PE_DLL",
+        "number": 2,
+        "description": "Although DLLs are actually portable executables, this value enables the file type to be identified separately. File type is PE_DLL."
+      },
+      {
+        "name": "FILE_TYPE_MSI",
+        "number": 3,
+        "description": "File type is MSI."
+      },
+      {
+        "name": "FILE_TYPE_NE_EXE",
+        "number": 10,
+        "description": "File type is NE_EXE."
+      },
+      {
+        "name": "FILE_TYPE_NE_DLL",
+        "number": 11,
+        "description": "File type is NE_DLL."
+      },
+      {
+        "name": "FILE_TYPE_DOS_EXE",
+        "number": 20,
+        "description": "File type is DOS_EXE."
+      },
+      {
+        "name": "FILE_TYPE_DOS_COM",
+        "number": 21,
+        "description": "File type is DOS_COM."
+      },
+      {
+        "name": "FILE_TYPE_COFF",
+        "number": 30,
+        "description": "File type is COFF."
+      },
+      {
+        "name": "FILE_TYPE_ELF",
+        "number": 31,
+        "description": "File type is ELF."
+      },
+      {
+        "name": "FILE_TYPE_LINUX_KERNEL",
+        "number": 32,
+        "description": "File type is LINUX_KERNEL."
+      },
+      {
+        "name": "FILE_TYPE_RPM",
+        "number": 33,
+        "description": "File type is RPM."
+      },
+      {
+        "name": "FILE_TYPE_LINUX",
+        "number": 34,
+        "description": "File type is LINUX."
+      },
+      {
+        "name": "FILE_TYPE_MACH_O",
+        "number": 35,
+        "description": "File type is MACH_O."
+      },
+      {
+        "name": "FILE_TYPE_JAVA_BYTECODE",
+        "number": 36,
+        "description": "File type is JAVA_BYTECODE."
+      },
+      {
+        "name": "FILE_TYPE_DMG",
+        "number": 37,
+        "description": "File type is DMG."
+      },
+      {
+        "name": "FILE_TYPE_DEB",
+        "number": 38,
+        "description": "File type is DEB."
+      },
+      {
+        "name": "FILE_TYPE_PKG",
+        "number": 39,
+        "description": "File type is PKG."
+      },
+      {
+        "name": "FILE_TYPE_PYC",
+        "number": 40,
+        "description": "File type is PYC."
+      },
+      {
+        "name": "FILE_TYPE_LNK",
+        "number": 50,
+        "description": "File type is LNK."
+      },
+      {
+        "name": "FILE_TYPE_DESKTOP_ENTRY",
+        "number": 51,
+        "description": "File type is DESKTOP_ENTRY."
+      },
+      {
+        "name": "FILE_TYPE_JPEG",
+        "number": 100,
+        "description": "File type is JPEG."
+      },
+      {
+        "name": "FILE_TYPE_TIFF",
+        "number": 101,
+        "description": "File type is TIFF."
+      },
+      {
+        "name": "FILE_TYPE_GIF",
+        "number": 102,
+        "description": "File type is GIF."
+      },
+      {
+        "name": "FILE_TYPE_PNG",
+        "number": 103,
+        "description": "File type is PNG."
+      },
+      {
+        "name": "FILE_TYPE_BMP",
+        "number": 104,
+        "description": "File type is BMP."
+      },
+      {
+        "name": "FILE_TYPE_GIMP",
+        "number": 105,
+        "description": "File type is GIMP."
+      },
+      {
+        "name": "FILE_TYPE_IN_DESIGN",
+        "number": 106,
+        "description": "File type is Adobe InDesign."
+      },
+      {
+        "name": "FILE_TYPE_PSD",
+        "number": 107,
+        "description": "File type is PSD. Adobe Photoshop."
+      },
+      {
+        "name": "FILE_TYPE_TARGA",
+        "number": 108,
+        "description": "File type is TARGA."
+      },
+      {
+        "name": "FILE_TYPE_XWD",
+        "number": 109,
+        "description": "File type is XWD."
+      },
+      {
+        "name": "FILE_TYPE_DIB",
+        "number": 110,
+        "description": "File type is DIB."
+      },
+      {
+        "name": "FILE_TYPE_JNG",
+        "number": 111,
+        "description": "File type is JNG."
+      },
+      {
+        "name": "FILE_TYPE_ICO",
+        "number": 112,
+        "description": "File type is ICO."
+      },
+      {
+        "name": "FILE_TYPE_FPX",
+        "number": 113,
+        "description": "File type is FPX."
+      },
+      {
+        "name": "FILE_TYPE_EPS",
+        "number": 114,
+        "description": "File type is EPS."
+      },
+      {
+        "name": "FILE_TYPE_SVG",
+        "number": 115,
+        "description": "File type is SVG."
+      },
+      {
+        "name": "FILE_TYPE_EMF",
+        "number": 116,
+        "description": "File type is EMF."
+      },
+      {
+        "name": "FILE_TYPE_WEBP",
+        "number": 117,
+        "description": "File type is WEBP."
+      },
+      {
+        "name": "FILE_TYPE_DWG",
+        "number": 118,
+        "description": "File type is DWG."
+      },
+      {
+        "name": "FILE_TYPE_DXF",
+        "number": 119,
+        "description": "File type is DXF."
+      },
+      {
+        "name": "FILE_TYPE_THREEDS",
+        "number": 120,
+        "description": "File type is 3DS."
+      },
+      {
+        "name": "FILE_TYPE_OGG",
+        "number": 150,
+        "description": "File type is OGG."
+      },
+      {
+        "name": "FILE_TYPE_FLC",
+        "number": 151,
+        "description": "File type is FLC."
+      },
+      {
+        "name": "FILE_TYPE_FLI",
+        "number": 152,
+        "description": "File type is FLI."
+      },
+      {
+        "name": "FILE_TYPE_MP3",
+        "number": 153,
+        "description": "File type is MP3."
+      },
+      {
+        "name": "FILE_TYPE_FLAC",
+        "number": 154,
+        "description": "File type is FLAC."
+      },
+      {
+        "name": "FILE_TYPE_WAV",
+        "number": 155,
+        "description": "File type is WAV."
+      },
+      {
+        "name": "FILE_TYPE_MIDI",
+        "number": 156,
+        "description": "File type is MIDI."
+      },
+      {
+        "name": "FILE_TYPE_AVI",
+        "number": 157,
+        "description": "File type is AVI."
+      },
+      {
+        "name": "FILE_TYPE_MPEG",
+        "number": 158,
+        "description": "File type is MPEG."
+      },
+      {
+        "name": "FILE_TYPE_QUICKTIME",
+        "number": 159,
+        "description": "File type is QUICKTIME."
+      },
+      {
+        "name": "FILE_TYPE_ASF",
+        "number": 160,
+        "description": "File type is ASF."
+      },
+      {
+        "name": "FILE_TYPE_DIVX",
+        "number": 161,
+        "description": "File type is DIVX."
+      },
+      {
+        "name": "FILE_TYPE_FLV",
+        "number": 162,
+        "description": "File type is FLV."
+      },
+      {
+        "name": "FILE_TYPE_WMA",
+        "number": 163,
+        "description": "File type is WMA."
+      },
+      {
+        "name": "FILE_TYPE_WMV",
+        "number": 164,
+        "description": "File type is WMV."
+      },
+      {
+        "name": "FILE_TYPE_RM",
+        "number": 165,
+        "description": "File type is RM. RealMedia type."
+      },
+      {
+        "name": "FILE_TYPE_MOV",
+        "number": 166,
+        "description": "File type is MOV."
+      },
+      {
+        "name": "FILE_TYPE_MP4",
+        "number": 167,
+        "description": "File type is MP4."
+      },
+      {
+        "name": "FILE_TYPE_T3GP",
+        "number": 168,
+        "description": "File type is T3GP."
+      },
+      {
+        "name": "FILE_TYPE_WEBM",
+        "number": 169,
+        "description": "File type is WEBM."
+      },
+      {
+        "name": "FILE_TYPE_MKV",
+        "number": 170,
+        "description": "File type is MKV."
+      },
+      {
+        "name": "FILE_TYPE_PDF",
+        "number": 200,
+        "description": "File type is PDF."
+      },
+      {
+        "name": "FILE_TYPE_PS",
+        "number": 201,
+        "description": "File type is PS."
+      },
+      {
+        "name": "FILE_TYPE_DOC",
+        "number": 202,
+        "description": "File type is DOC."
+      },
+      {
+        "name": "FILE_TYPE_DOCX",
+        "number": 203,
+        "description": "File type is DOCX."
+      },
+      {
+        "name": "FILE_TYPE_PPT",
+        "number": 204,
+        "description": "File type is PPT."
+      },
+      {
+        "name": "FILE_TYPE_PPTX",
+        "number": 205,
+        "description": "File type is PPTX."
+      },
+      {
+        "name": "FILE_TYPE_XLS",
+        "number": 206,
+        "description": "File type is XLS."
+      },
+      {
+        "name": "FILE_TYPE_XLSX",
+        "number": 207,
+        "description": "File type is XLSX."
+      },
+      {
+        "name": "FILE_TYPE_RTF",
+        "number": 208,
+        "description": "File type is RTF."
+      },
+      {
+        "name": "FILE_TYPE_PPSX",
+        "number": 209,
+        "description": "File type is PPSX."
+      },
+      {
+        "name": "FILE_TYPE_ODP",
+        "number": 250,
+        "description": "File type is ODP."
+      },
+      {
+        "name": "FILE_TYPE_ODS",
+        "number": 251,
+        "description": "File type is ODS."
+      },
+      {
+        "name": "FILE_TYPE_ODT",
+        "number": 252,
+        "description": "File type is ODT."
+      },
+      {
+        "name": "FILE_TYPE_HWP",
+        "number": 253,
+        "description": "File type is HWP."
+      },
+      {
+        "name": "FILE_TYPE_GUL",
+        "number": 254,
+        "description": "File type is GUL."
+      },
+      {
+        "name": "FILE_TYPE_ODF",
+        "number": 255,
+        "description": "File type is ODF."
+      },
+      {
+        "name": "FILE_TYPE_ODG",
+        "number": 256,
+        "description": "File type is ODG."
+      },
+      {
+        "name": "FILE_TYPE_ONE_NOTE",
+        "number": 257,
+        "description": "File type is ONE_NOTE."
+      },
+      {
+        "name": "FILE_TYPE_OOXML",
+        "number": 258,
+        "description": "File type is OOXML."
+      },
+      {
+        "name": "FILE_TYPE_SLK",
+        "number": 259,
+        "description": "File type is SLK."
+      },
+      {
+        "name": "FILE_TYPE_EBOOK",
+        "number": 260,
+        "description": "File type is EBOOK."
+      },
+      {
+        "name": "FILE_TYPE_LATEX",
+        "number": 261,
+        "description": "File type is LATEX."
+      },
+      {
+        "name": "FILE_TYPE_TTF",
+        "number": 262,
+        "description": "File type is TTF."
+      },
+      {
+        "name": "FILE_TYPE_EOT",
+        "number": 263,
+        "description": "File type is EOT."
+      },
+      {
+        "name": "FILE_TYPE_WOFF",
+        "number": 264,
+        "description": "File type is WOFF."
+      },
+      {
+        "name": "FILE_TYPE_CHM",
+        "number": 265,
+        "description": "File type is CHM."
+      },
+      {
+        "name": "FILE_TYPE_ZIP",
+        "number": 300,
+        "description": "File type is ZIP."
+      },
+      {
+        "name": "FILE_TYPE_GZIP",
+        "number": 301,
+        "description": "File type is GZIP."
+      },
+      {
+        "name": "FILE_TYPE_BZIP",
+        "number": 302,
+        "description": "File type is BZIP."
+      },
+      {
+        "name": "FILE_TYPE_RZIP",
+        "number": 303,
+        "description": "File type is RZIP."
+      },
+      {
+        "name": "FILE_TYPE_DZIP",
+        "number": 304,
+        "description": "File type is DZIP."
+      },
+      {
+        "name": "FILE_TYPE_SEVENZIP",
+        "number": 305,
+        "description": "File type is SEVENZIP."
+      },
+      {
+        "name": "FILE_TYPE_CAB",
+        "number": 306,
+        "description": "File type is CAB."
+      },
+      {
+        "name": "FILE_TYPE_JAR",
+        "number": 307,
+        "description": "File type is JAR."
+      },
+      {
+        "name": "FILE_TYPE_RAR",
+        "number": 308,
+        "description": "File type is RAR."
+      },
+      {
+        "name": "FILE_TYPE_MSCOMPRESS",
+        "number": 309,
+        "description": "File type is MSCOMPRESS."
+      },
+      {
+        "name": "FILE_TYPE_ACE",
+        "number": 310,
+        "description": "File type is ACE."
+      },
+      {
+        "name": "FILE_TYPE_ARC",
+        "number": 311,
+        "description": "File type is ARC."
+      },
+      {
+        "name": "FILE_TYPE_ARJ",
+        "number": 312,
+        "description": "File type is ARJ."
+      },
+      {
+        "name": "FILE_TYPE_ASD",
+        "number": 313,
+        "description": "File type is ASD."
+      },
+      {
+        "name": "FILE_TYPE_BLACKHOLE",
+        "number": 314,
+        "description": "File type is BLACKHOLE."
+      },
+      {
+        "name": "FILE_TYPE_KGB",
+        "number": 315,
+        "description": "File type is KGB."
+      },
+      {
+        "name": "FILE_TYPE_ZLIB",
+        "number": 316,
+        "description": "File type is ZLIB."
+      },
+      {
+        "name": "FILE_TYPE_TAR",
+        "number": 317,
+        "description": "File type is TAR."
+      },
+      {
+        "name": "FILE_TYPE_ZST",
+        "number": 318,
+        "description": "File type is ZST."
+      },
+      {
+        "name": "FILE_TYPE_LZFSE",
+        "number": 319,
+        "description": "File type is LZFSE."
+      },
+      {
+        "name": "FILE_TYPE_PYTHON_WHL",
+        "number": 320,
+        "description": "File type is PYTHON_WHL."
+      },
+      {
+        "name": "FILE_TYPE_PYTHON_PKG",
+        "number": 321,
+        "description": "File type is PYTHON_PKG."
+      },
+      {
+        "name": "FILE_TYPE_MSIX",
+        "number": 322,
+        "description": "File type is MSIX, new Windows app package format."
+      },
+      {
+        "name": "FILE_TYPE_TEXT",
+        "number": 400,
+        "description": "File type is TEXT."
+      },
+      {
+        "name": "FILE_TYPE_SCRIPT",
+        "number": 401,
+        "description": "File type is SCRIPT."
+      },
+      {
+        "name": "FILE_TYPE_PHP",
+        "number": 402,
+        "description": "File type is PHP."
+      },
+      {
+        "name": "FILE_TYPE_PYTHON",
+        "number": 403,
+        "description": "File type is PYTHON."
+      },
+      {
+        "name": "FILE_TYPE_PERL",
+        "number": 404,
+        "description": "File type is PERL."
+      },
+      {
+        "name": "FILE_TYPE_RUBY",
+        "number": 405,
+        "description": "File type is RUBY."
+      },
+      {
+        "name": "FILE_TYPE_C",
+        "number": 406,
+        "description": "File type is C."
+      },
+      {
+        "name": "FILE_TYPE_CPP",
+        "number": 407,
+        "description": "File type is CPP."
+      },
+      {
+        "name": "FILE_TYPE_JAVA",
+        "number": 408,
+        "description": "File type is JAVA."
+      },
+      {
+        "name": "FILE_TYPE_SHELLSCRIPT",
+        "number": 409,
+        "description": "File type is SHELLSCRIPT."
+      },
+      {
+        "name": "FILE_TYPE_PASCAL",
+        "number": 410,
+        "description": "File type is PASCAL."
+      },
+      {
+        "name": "FILE_TYPE_AWK",
+        "number": 411,
+        "description": "File type is AWK."
+      },
+      {
+        "name": "FILE_TYPE_DYALOG",
+        "number": 412,
+        "description": "File type is DYALOG."
+      },
+      {
+        "name": "FILE_TYPE_FORTRAN",
+        "number": 413,
+        "description": "File type is FORTRAN."
+      },
+      {
+        "name": "FILE_TYPE_JAVASCRIPT",
+        "number": 414,
+        "description": "File type is JAVASCRIPT."
+      },
+      {
+        "name": "FILE_TYPE_POWERSHELL",
+        "number": 415,
+        "description": "File type is POWERSHELL."
+      },
+      {
+        "name": "FILE_TYPE_VBA",
+        "number": 416,
+        "description": "File type is VBA."
+      },
+      {
+        "name": "FILE_TYPE_M4",
+        "number": 417,
+        "description": "File type is M4."
+      },
+      {
+        "name": "FILE_TYPE_OBJETIVEC",
+        "number": 418,
+        "description": "File type is OBJETIVEC."
+      },
+      {
+        "name": "FILE_TYPE_JMOD",
+        "number": 419,
+        "description": "File type is JMOD."
+      },
+      {
+        "name": "FILE_TYPE_MAKEFILE",
+        "number": 420,
+        "description": "File type is MAKEFILE."
+      },
+      {
+        "name": "FILE_TYPE_INI",
+        "number": 421,
+        "description": "File type is INI."
+      },
+      {
+        "name": "FILE_TYPE_CLJ",
+        "number": 422,
+        "description": "File type is CLJ."
+      },
+      {
+        "name": "FILE_TYPE_PDB",
+        "number": 425,
+        "description": "File type is PDB."
+      },
+      {
+        "name": "FILE_TYPE_SQL",
+        "number": 426,
+        "description": "File type is SQL."
+      },
+      {
+        "name": "FILE_TYPE_NEKO",
+        "number": 427,
+        "description": "File type is NEKO."
+      },
+      {
+        "name": "FILE_TYPE_WER",
+        "number": 428,
+        "description": "File type is WER."
+      },
+      {
+        "name": "FILE_TYPE_GOLANG",
+        "number": 429,
+        "description": "File type is GOLANG."
+      },
+      {
+        "name": "FILE_TYPE_M3U",
+        "number": 430,
+        "description": "File type is M3U."
+      },
+      {
+        "name": "FILE_TYPE_BAT",
+        "number": 431,
+        "description": "File type is BAT, Windows .bat/.cmd (old files are tagged as SHELLSCRIPT)."
+      },
+      {
+        "name": "FILE_TYPE_MSC",
+        "number": 432,
+        "description": "File type is MSC, Microsoft Management Console (MMC)."
+      },
+      {
+        "name": "FILE_TYPE_RDP",
+        "number": 433,
+        "description": "File type is RDP, Microsoft Remote Desktop Protocol (RDP) file."
+      },
+      {
+        "name": "FILE_TYPE_SYMBIAN",
+        "number": 500,
+        "description": "File type is SYMBIAN."
+      },
+      {
+        "name": "FILE_TYPE_PALMOS",
+        "number": 501,
+        "description": "File type is PALMOS."
+      },
+      {
+        "name": "FILE_TYPE_WINCE",
+        "number": 502,
+        "description": "File type is WINCE."
+      },
+      {
+        "name": "FILE_TYPE_ANDROID",
+        "number": 503,
+        "description": "File type is ANDROID."
+      },
+      {
+        "name": "FILE_TYPE_IPHONE",
+        "number": 504,
+        "description": "File type is IPHONE."
+      },
+      {
+        "name": "FILE_TYPE_HTML",
+        "number": 600,
+        "description": "File type is HTML."
+      },
+      {
+        "name": "FILE_TYPE_XML",
+        "number": 601,
+        "description": "File type is XML."
+      },
+      {
+        "name": "FILE_TYPE_SWF",
+        "number": 602,
+        "description": "File type is SWF."
+      },
+      {
+        "name": "FILE_TYPE_FLA",
+        "number": 603,
+        "description": "File type is FLA."
+      },
+      {
+        "name": "FILE_TYPE_COOKIE",
+        "number": 604,
+        "description": "File type is COOKIE."
+      },
+      {
+        "name": "FILE_TYPE_TORRENT",
+        "number": 605,
+        "description": "File type is TORRENT."
+      },
+      {
+        "name": "FILE_TYPE_EMAIL_TYPE",
+        "number": 606,
+        "description": "File type is EMAIL_TYPE."
+      },
+      {
+        "name": "FILE_TYPE_OUTLOOK",
+        "number": 607,
+        "description": "File type is OUTLOOK."
+      },
+      {
+        "name": "FILE_TYPE_SGML",
+        "number": 608,
+        "description": "File type is SGML."
+      },
+      {
+        "name": "FILE_TYPE_JSON",
+        "number": 609,
+        "description": "File type is JSON."
+      },
+      {
+        "name": "FILE_TYPE_CSV",
+        "number": 610,
+        "description": "File type is CSV."
+      },
+      {
+        "name": "FILE_TYPE_HTA",
+        "number": 611,
+        "description": "File type is HTA (HTML Application)."
+      },
+      {
+        "name": "FILE_TYPE_INTERNET_SHORTCUT",
+        "number": 612,
+        "description": "File type is MSHTML .url."
+      },
+      {
+        "name": "FILE_TYPE_CAP",
+        "number": 700,
+        "description": "File type is CAP."
+      },
+      {
+        "name": "FILE_TYPE_ISOIMAGE",
+        "number": 800,
+        "description": "File type is ISOIMAGE."
+      },
+      {
+        "name": "FILE_TYPE_SQUASHFS",
+        "number": 801,
+        "description": "File type is SQUASHFS."
+      },
+      {
+        "name": "FILE_TYPE_VHD",
+        "number": 802,
+        "description": "File type is VHD."
+      },
+      {
+        "name": "FILE_TYPE_APPLE",
+        "number": 1000,
+        "description": "File type is APPLE."
+      },
+      {
+        "name": "FILE_TYPE_MACINTOSH",
+        "number": 1001,
+        "description": "File type is MACINTOSH."
+      },
+      {
+        "name": "FILE_TYPE_APPLESINGLE",
+        "number": 1002,
+        "description": "File type is APPLESINGLE."
+      },
+      {
+        "name": "FILE_TYPE_APPLEDOUBLE",
+        "number": 1003,
+        "description": "File type is APPLEDOUBLE."
+      },
+      {
+        "name": "FILE_TYPE_MACINTOSH_HFS",
+        "number": 1004,
+        "description": "File type is MACINTOSH_HFS."
+      },
+      {
+        "name": "FILE_TYPE_APPLE_PLIST",
+        "number": 1005,
+        "description": "File type is APPLE_PLIST."
+      },
+      {
+        "name": "FILE_TYPE_MACINTOSH_LIB",
+        "number": 1006,
+        "description": "File type is MACINTOSH_LIB."
+      },
+      {
+        "name": "FILE_TYPE_APPLESCRIPT",
+        "number": 1007,
+        "description": "File type is APPLESCRIPT."
+      },
+      {
+        "name": "FILE_TYPE_APPLESCRIPT_COMPILED",
+        "number": 1008,
+        "description": "File type is APPLESCRIPT_COMPILED ."
+      },
+      {
+        "name": "FILE_TYPE_CRX",
+        "number": 1100,
+        "description": "File type is CRX."
+      },
+      {
+        "name": "FILE_TYPE_XPI",
+        "number": 1101,
+        "description": "File type is XPI."
+      },
+      {
+        "name": "FILE_TYPE_ROM",
+        "number": 1200,
+        "description": "File type is ROM."
+      },
+      {
+        "name": "FILE_TYPE_IPS",
+        "number": 1201,
+        "description": "File type is IPS."
+      },
+      {
+        "name": "FILE_TYPE_PEM",
+        "number": 1300,
+        "description": "File type is PEM."
+      },
+      {
+        "name": "FILE_TYPE_PGP",
+        "number": 1301,
+        "description": "File type is PGP."
+      },
+      {
+        "name": "FILE_TYPE_CRT",
+        "number": 1302,
+        "description": "File type is CRT."
+      }
+    ],
+    "FindingVariable.Type": [
+      {
+        "name": "TYPE_UNSPECIFIED",
+        "number": 0,
+        "description": "An unspecified variable type."
+      },
+      {
+        "name": "MATCH",
+        "number": 1,
+        "description": "A variable coming from the match conditions."
+      },
+      {
+        "name": "OUTCOME",
+        "number": 2,
+        "description": "A variable representing significant data that was found in the detection logic."
+      }
+    ],
+    "LinuxUtmp.RecordType": [
+      {
+        "name": "RECORD_TYPE_UNSPECIFIED",
+        "number": 0,
+        "description": "The default record type."
+      },
+      {
+        "name": "RUN_LVL",
+        "number": 1,
+        "description": "Run-level change."
+      },
+      {
+        "name": "BOOT_TIME",
+        "number": 2,
+        "description": "System boot time."
+      },
+      {
+        "name": "NEW_TIME",
+        "number": 3,
+        "description": "New time after system clock change."
+      },
+      {
+        "name": "OLD_TIME",
+        "number": 4,
+        "description": "Old time before system clock change."
+      },
+      {
+        "name": "INIT_PROCESS",
+        "number": 5,
+        "description": "Process spawned by init."
+      },
+      {
+        "name": "LOGIN_PROCESS",
+        "number": 6,
+        "description": "Login process."
+      },
+      {
+        "name": "USER_PROCESS",
+        "number": 7,
+        "description": "Normal user process (logged-in session)."
+      },
+      {
+        "name": "DEAD_PROCESS",
+        "number": 8,
+        "description": "Terminated process (session ended)."
+      },
+      {
+        "name": "ACCOUNTING",
+        "number": 9,
+        "description": "Accounting message."
+      }
+    ],
+    "Metadata.EnrichmentState": [
+      {
+        "name": "ENRICHMENT_STATE_UNSPECIFIED",
+        "number": 0,
+        "description": "Unspecified."
+      },
+      {
+        "name": "ENRICHED",
+        "number": 1,
+        "description": "The event has been enriched by Google SecOps."
+      },
+      {
+        "name": "UNENRICHED",
+        "number": 2,
+        "description": "The event has not been enriched by Google SecOps."
+      }
+    ],
+    "Metadata.EventTimestampAttribute": [
+      {
+        "name": "EVENT_TIMESTAMP_ATTRIBUTE_UNSPECIFIED",
+        "number": 0,
+        "description": "Default event timestamp attribute."
+      },
+      {
+        "name": "FILE_LAST_ACCESS_TIME",
+        "number": 1,
+        "description": "Deprecated. Use LAST_ACCESSED instead."
+      },
+      {
+        "name": "FILE_LAST_MODIFIED_TIME",
+        "number": 2,
+        "description": "Deprecated. Use LAST_MODIFIED instead."
+      },
+      {
+        "name": "FILE_METADATA_LAST_CHANGE_TIME",
+        "number": 3,
+        "description": "Deprecated. Use METADATA_LAST_CHANGED instead."
+      },
+      {
+        "name": "FILE_CREATION_TIME",
+        "number": 4,
+        "description": "Deprecated. Use CREATED instead."
+      },
+      {
+        "name": "COLLECTED_TIME",
+        "number": 5,
+        "description": "Deprecated. Use COLLECTED instead."
+      },
+      {
+        "name": "COLLECTED",
+        "number": 6,
+        "description": "The time when the event was collected by the vendor's local collection infrastructure."
+      },
+      {
+        "name": "ACCESSED",
+        "number": 7,
+        "description": "The time when the file was accessed."
+      },
+      {
+        "name": "CHANGED",
+        "number": 8,
+        "description": "The time when the file was changed."
+      },
+      {
+        "name": "CREATED",
+        "number": 9,
+        "description": "The time when the file was first created."
+      },
+      {
+        "name": "FILE_NAME_ACCESSED",
+        "number": 10,
+        "description": "The time when the file name was accessed."
+      },
+      {
+        "name": "FILE_NAME_CHANGED",
+        "number": 11,
+        "description": "The time when the file name was changed."
+      },
+      {
+        "name": "FILE_NAME_CREATED",
+        "number": 12,
+        "description": "The time when the file name was created."
+      },
+      {
+        "name": "FILE_NAME_LAST_ACCESSED",
+        "number": 13,
+        "description": "The time when the file name was last accessed."
+      },
+      {
+        "name": "FILE_NAME_LAST_MODIFIED",
+        "number": 14,
+        "description": "The time when the file name was last modified."
+      },
+      {
+        "name": "FILE_NAME_METADATA_LAST_CHANGED",
+        "number": 15,
+        "description": "The time when the file name metadata was last changed."
+      },
+      {
+        "name": "FILE_NAME_MODIFIED",
+        "number": 16,
+        "description": "The time when the file name was modified."
+      },
+      {
+        "name": "LAST_ACCESSED",
+        "number": 17,
+        "description": "The time when the file was last accessed."
+      },
+      {
+        "name": "LAST_MODIFIED",
+        "number": 18,
+        "description": "The time when the file was last modified."
+      },
+      {
+        "name": "METADATA_LAST_CHANGED",
+        "number": 19,
+        "description": "The time when the file metadata was last changed."
+      },
+      {
+        "name": "MODIFIED",
+        "number": 20,
+        "description": "The time when the file was modified."
+      },
+      {
+        "name": "ADDED",
+        "number": 21,
+        "description": "Added Timestamp."
+      },
+      {
+        "name": "BACKED_UP",
+        "number": 22,
+        "description": "Backed Up Timestamp."
+      },
+      {
+        "name": "LAST_CONNECTED",
+        "number": 23,
+        "description": "Last Connected timestamp."
+      },
+      {
+        "name": "DELETED",
+        "number": 24,
+        "description": "Deleted Timestamp."
+      },
+      {
+        "name": "ENDED",
+        "number": 25,
+        "description": "Ended Timestamp."
+      },
+      {
+        "name": "EXITED",
+        "number": 26,
+        "description": "Exited Timestamp."
+      },
+      {
+        "name": "EXPIRED",
+        "number": 27,
+        "description": "Expired Timestamp."
+      },
+      {
+        "name": "FIRST_ACCESSED",
+        "number": 28,
+        "description": "First Accessed Timestamp."
+      },
+      {
+        "name": "APPEARED",
+        "number": 29,
+        "description": "Appeared Timestamp."
+      },
+      {
+        "name": "INSTALLED",
+        "number": 30,
+        "description": "Installed Timestamp."
+      },
+      {
+        "name": "LAST_ACTIVE",
+        "number": 31,
+        "description": "Last Active Timestamp."
+      },
+      {
+        "name": "LAST_LOGGED_IN",
+        "number": 32,
+        "description": "Last Login Timestamp."
+      },
+      {
+        "name": "LAST_LOGIN_ATTEMPT",
+        "number": 33,
+        "description": "Last Login Attempt Timestamp."
+      },
+      {
+        "name": "LAST_PASSWORD_SET",
+        "number": 34,
+        "description": "Last Password Set Timestamp."
+      },
+      {
+        "name": "LAST_PRINTED",
+        "number": 35,
+        "description": "Last Printed Timestamp."
+      },
+      {
+        "name": "LAST_RESUMED",
+        "number": 36,
+        "description": "Last Resumed Timestamp."
+      },
+      {
+        "name": "LAST_EXECUTED",
+        "number": 37,
+        "description": "Last Executed Timestamp."
+      },
+      {
+        "name": "LAST_SEEN",
+        "number": 38,
+        "description": "Last Seen Timestamp."
+      },
+      {
+        "name": "LAST_SHUTDOWN",
+        "number": 39,
+        "description": "Last Shutdown Timestamp."
+      },
+      {
+        "name": "LAST_UPDATED",
+        "number": 40,
+        "description": "Last Updated Timestamp."
+      },
+      {
+        "name": "LAST_USED",
+        "number": 41,
+        "description": "Last Used Timestamp."
+      },
+      {
+        "name": "LAST_VISITED",
+        "number": 42,
+        "description": "Last Visited Timestamp."
+      },
+      {
+        "name": "LINKED",
+        "number": 43,
+        "description": "Linked Timestamp."
+      },
+      {
+        "name": "METADATA_MODIFIED",
+        "number": 44,
+        "description": "Metadata Modified Timestamp."
+      },
+      {
+        "name": "CONTENT_MODIFIED",
+        "number": 45,
+        "description": "Modified Timestamp."
+      },
+      {
+        "name": "PURCHASED",
+        "number": 46,
+        "description": "Purchased Timestamp."
+      },
+      {
+        "name": "RECORDED",
+        "number": 47,
+        "description": "Recorded Timestamp."
+      },
+      {
+        "name": "REQUEST_RECEIVED",
+        "number": 48,
+        "description": "Request Received Timestamp."
+      },
+      {
+        "name": "RESPONSE_SENT",
+        "number": 49,
+        "description": "Response Sent Timestamp."
+      },
+      {
+        "name": "SCHEDULED_TO_END",
+        "number": 50,
+        "description": "Scheduled to End Timestamp."
+      },
+      {
+        "name": "SCHEDULED_TO_START",
+        "number": 51,
+        "description": "Scheduled to Start Timestamp."
+      },
+      {
+        "name": "SENT",
+        "number": 52,
+        "description": "Sent Timestamp."
+      },
+      {
+        "name": "STARTED",
+        "number": 53,
+        "description": "Started Timestamp."
+      },
+      {
+        "name": "UPDATED",
+        "number": 54,
+        "description": "Updated Timestamp."
+      },
+      {
+        "name": "VALIDATED",
+        "number": 55,
+        "description": "Validated Timestamp."
+      },
+      {
+        "name": "MOST_RECENT_RUN",
+        "number": 56,
+        "description": "Most Recent Run Timestamp."
+      },
+      {
+        "name": "NEXT_RUN",
+        "number": 57,
+        "description": "Next Run Timestamp."
+      },
+      {
+        "name": "VISITED",
+        "number": 58,
+        "description": "Visited Timestamp."
+      },
+      {
+        "name": "TARGET_CREATED",
+        "number": 59,
+        "description": "Target Created Timestamp."
+      },
+      {
+        "name": "VOLUME_CREATED",
+        "number": 60,
+        "description": "Volume Created Timestamp."
+      },
+      {
+        "name": "POST_CHECKED",
+        "number": 61,
+        "description": "Post Checked Timestamp."
+      },
+      {
+        "name": "SYNCHRONIZED",
+        "number": 62,
+        "description": "Synchronized Timestamp."
+      },
+      {
+        "name": "ITEM_CREATED",
+        "number": 63,
+        "description": "Item Created Timestamp."
+      },
+      {
+        "name": "ITEM_MODIFIED",
+        "number": 64,
+        "description": "Item Modified Timestamp."
+      },
+      {
+        "name": "DOCUMENT_LAST_SAVED",
+        "number": 65,
+        "description": "Document Last Saved Timestamp."
+      },
+      {
+        "name": "LAST_REGISTERED",
+        "number": 66,
+        "description": "Last Registered Timestamp."
+      },
+      {
+        "name": "LAUNCHED",
+        "number": 67,
+        "description": "Launched Timestamp."
+      },
+      {
+        "name": "FIRST_VISITED",
+        "number": 68,
+        "description": "First Visited Timestamp."
+      },
+      {
+        "name": "FIRST_SEEN",
+        "number": 69,
+        "description": "First Seen Timestamp."
+      },
+      {
+        "name": "DOWNLOADED",
+        "number": 70,
+        "description": "Downloaded Timestamp."
+      }
+    ],
+    "Metadata.EventType": [
+      {
+        "name": "EVENTTYPE_UNSPECIFIED",
+        "number": 0,
+        "description": "Default event type"
+      },
+      {
+        "name": "PROCESS_UNCATEGORIZED",
+        "number": 10000,
+        "description": "Activity related to a process which does not match any other event types."
+      },
+      {
+        "name": "PROCESS_LAUNCH",
+        "number": 10001,
+        "description": "Process launch."
+      },
+      {
+        "name": "PROCESS_INJECTION",
+        "number": 10002,
+        "description": "Process injecting into another process."
+      },
+      {
+        "name": "PROCESS_PRIVILEGE_ESCALATION",
+        "number": 10003,
+        "description": "Process privilege escalation."
+      },
+      {
+        "name": "PROCESS_TERMINATION",
+        "number": 10004,
+        "description": "Process termination."
+      },
+      {
+        "name": "PROCESS_OPEN",
+        "number": 10005,
+        "description": "Process being opened."
+      },
+      {
+        "name": "PROCESS_MODULE_LOAD",
+        "number": 10006,
+        "description": "Process loading a module."
+      },
+      {
+        "name": "REGISTRY_UNCATEGORIZED",
+        "number": 11000,
+        "description": "Registry event which does not match any of the other event types."
+      },
+      {
+        "name": "REGISTRY_CREATION",
+        "number": 11001,
+        "description": "Registry creation."
+      },
+      {
+        "name": "REGISTRY_MODIFICATION",
+        "number": 11002,
+        "description": "Registry modification."
+      },
+      {
+        "name": "REGISTRY_DELETION",
+        "number": 11003,
+        "description": "Registry deletion."
+      },
+      {
+        "name": "SETTING_UNCATEGORIZED",
+        "number": 12000,
+        "description": "Settings-related event which does not match any of the other event types."
+      },
+      {
+        "name": "SETTING_CREATION",
+        "number": 12001,
+        "description": "Setting creation."
+      },
+      {
+        "name": "SETTING_MODIFICATION",
+        "number": 12002,
+        "description": "Setting modification."
+      },
+      {
+        "name": "SETTING_DELETION",
+        "number": 12003,
+        "description": "Setting deletion."
+      },
+      {
+        "name": "MUTEX_UNCATEGORIZED",
+        "number": 13000,
+        "description": "Any mutex event other than creation."
+      },
+      {
+        "name": "MUTEX_CREATION",
+        "number": 13001,
+        "description": "Mutex creation."
+      },
+      {
+        "name": "FILE_UNCATEGORIZED",
+        "number": 14000,
+        "description": "File event which does not match any of the other event types."
+      },
+      {
+        "name": "FILE_CREATION",
+        "number": 14001,
+        "description": "File created."
+      },
+      {
+        "name": "FILE_DELETION",
+        "number": 14002,
+        "description": "File deleted."
+      },
+      {
+        "name": "FILE_MODIFICATION",
+        "number": 14003,
+        "description": "File modified."
+      },
+      {
+        "name": "FILE_READ",
+        "number": 14004,
+        "description": "File read."
+      },
+      {
+        "name": "FILE_COPY",
+        "number": 14005,
+        "description": "File copied. Used for file copies, for example, to a thumb drive."
+      },
+      {
+        "name": "FILE_OPEN",
+        "number": 14006,
+        "description": "File opened."
+      },
+      {
+        "name": "FILE_MOVE",
+        "number": 14007,
+        "description": "File moved or renamed."
+      },
+      {
+        "name": "FILE_SYNC",
+        "number": 14008,
+        "description": "File synced (for example, Google Drive, Dropbox, backup)."
+      },
+      {
+        "name": "USER_UNCATEGORIZED",
+        "number": 15000,
+        "description": "User activity which does not match any of the other event types."
+      },
+      {
+        "name": "USER_LOGIN",
+        "number": 15001,
+        "description": "User login."
+      },
+      {
+        "name": "USER_LOGOUT",
+        "number": 15002,
+        "description": "User logout."
+      },
+      {
+        "name": "USER_CREATION",
+        "number": 15003,
+        "description": "User creation."
+      },
+      {
+        "name": "USER_CHANGE_PASSWORD",
+        "number": 15004,
+        "description": "User password change event."
+      },
+      {
+        "name": "USER_CHANGE_PERMISSIONS",
+        "number": 15005,
+        "description": "Change in user permissions."
+      },
+      {
+        "name": "USER_STATS",
+        "number": 15006,
+        "description": "Deprecated. Used to update user info for an LDAP dump."
+      },
+      {
+        "name": "USER_BADGE_IN",
+        "number": 15007,
+        "description": "User physically badging into a location."
+      },
+      {
+        "name": "USER_DELETION",
+        "number": 15008,
+        "description": "User deletion."
+      },
+      {
+        "name": "USER_RESOURCE_CREATION",
+        "number": 15009,
+        "description": "User creating a virtual resource. This is equivalent to RESOURCE_CREATION."
+      },
+      {
+        "name": "USER_RESOURCE_UPDATE_CONTENT",
+        "number": 15010,
+        "description": "User updating content of a virtual resource. This is equivalent to RESOURCE_WRITTEN."
+      },
+      {
+        "name": "USER_RESOURCE_UPDATE_PERMISSIONS",
+        "number": 15011,
+        "description": "User updating permissions of a virtual resource. This is equivalent to RESOURCE_PERMISSIONS_CHANGE."
+      },
+      {
+        "name": "USER_COMMUNICATION",
+        "number": 15012,
+        "description": "User initiating communication through a medium (for example, video)."
+      },
+      {
+        "name": "USER_RESOURCE_ACCESS",
+        "number": 15013,
+        "description": "User accessing a virtual resource. This is equivalent to RESOURCE_READ."
+      },
+      {
+        "name": "USER_RESOURCE_DELETION",
+        "number": 15014,
+        "description": "User deleting a virtual resource. This is equivalent to RESOURCE_DELETION."
+      },
+      {
+        "name": "GROUP_UNCATEGORIZED",
+        "number": 23000,
+        "description": "A group activity that does not fall into one of the other event types."
+      },
+      {
+        "name": "GROUP_CREATION",
+        "number": 23001,
+        "description": "A group creation."
+      },
+      {
+        "name": "GROUP_DELETION",
+        "number": 23002,
+        "description": "A group deletion."
+      },
+      {
+        "name": "GROUP_MODIFICATION",
+        "number": 23003,
+        "description": "A group modification."
+      },
+      {
+        "name": "EMAIL_UNCATEGORIZED",
+        "number": 19000,
+        "description": "Email messages"
+      },
+      {
+        "name": "EMAIL_TRANSACTION",
+        "number": 19001,
+        "description": "An email transaction."
+      },
+      {
+        "name": "EMAIL_URL_CLICK",
+        "number": 19002,
+        "description": "Deprecated: use NETWORK_HTTP instead. An email URL click event."
+      },
+      {
+        "name": "NETWORK_UNCATEGORIZED",
+        "number": 16000,
+        "description": "A network event that does not fit into one of the other event types."
+      },
+      {
+        "name": "NETWORK_FLOW",
+        "number": 16001,
+        "description": "Aggregated flow stats like netflow."
+      },
+      {
+        "name": "NETWORK_CONNECTION",
+        "number": 16002,
+        "description": "Network connection details like from a FW."
+      },
+      {
+        "name": "NETWORK_FTP",
+        "number": 16003,
+        "description": "FTP telemetry."
+      },
+      {
+        "name": "NETWORK_DHCP",
+        "number": 16004,
+        "description": "DHCP payload."
+      },
+      {
+        "name": "NETWORK_DNS",
+        "number": 16005,
+        "description": "DNS payload."
+      },
+      {
+        "name": "NETWORK_HTTP",
+        "number": 16006,
+        "description": "HTTP telemetry."
+      },
+      {
+        "name": "NETWORK_SMTP",
+        "number": 16007,
+        "description": "SMTP telemetry."
+      },
+      {
+        "name": "STATUS_UNCATEGORIZED",
+        "number": 17000,
+        "description": "A status message that does not fit into one of the other event types."
+      },
+      {
+        "name": "STATUS_HEARTBEAT",
+        "number": 17001,
+        "description": "Heartbeat indicating product is alive."
+      },
+      {
+        "name": "STATUS_STARTUP",
+        "number": 17002,
+        "description": "An agent startup."
+      },
+      {
+        "name": "STATUS_SHUTDOWN",
+        "number": 17003,
+        "description": "An agent shutdown."
+      },
+      {
+        "name": "STATUS_UPDATE",
+        "number": 17004,
+        "description": "A software or fingerprint update."
+      },
+      {
+        "name": "SCAN_UNCATEGORIZED",
+        "number": 18000,
+        "description": "Scan item that does not fit into one of the other event types."
+      },
+      {
+        "name": "SCAN_FILE",
+        "number": 18001,
+        "description": "A file scan."
+      },
+      {
+        "name": "SCAN_PROCESS_BEHAVIORS",
+        "number": 18002,
+        "description": "Scan process behaviors. Please use SCAN_PROCESS instead."
+      },
+      {
+        "name": "SCAN_PROCESS",
+        "number": 18003,
+        "description": "Scan process."
+      },
+      {
+        "name": "SCAN_HOST",
+        "number": 18004,
+        "description": "Scan results from scanning an entire host device for threats/sensitive documents."
+      },
+      {
+        "name": "SCAN_VULN_HOST",
+        "number": 18005,
+        "description": "Vulnerability scan logs about host vulnerabilities (e.g., out of date software) and network vulnerabilities (e.g., unprotected service detected via a network scan)."
+      },
+      {
+        "name": "SCAN_VULN_NETWORK",
+        "number": 18006,
+        "description": "Vulnerability scan logs about network vulnerabilities."
+      },
+      {
+        "name": "SCAN_NETWORK",
+        "number": 18007,
+        "description": "Scan network for suspicious activity"
+      },
+      {
+        "name": "SCHEDULED_TASK_UNCATEGORIZED",
+        "number": 20000,
+        "description": "Scheduled task event that does not fall into one of the other event types."
+      },
+      {
+        "name": "SCHEDULED_TASK_CREATION",
+        "number": 20001,
+        "description": "Scheduled task creation."
+      },
+      {
+        "name": "SCHEDULED_TASK_DELETION",
+        "number": 20002,
+        "description": "Scheduled task deletion."
+      },
+      {
+        "name": "SCHEDULED_TASK_ENABLE",
+        "number": 20003,
+        "description": "Scheduled task being enabled."
+      },
+      {
+        "name": "SCHEDULED_TASK_DISABLE",
+        "number": 20004,
+        "description": "Scheduled task being disabled."
+      },
+      {
+        "name": "SCHEDULED_TASK_MODIFICATION",
+        "number": 20005,
+        "description": "Scheduled task being modified."
+      },
+      {
+        "name": "SYSTEM_AUDIT_LOG_UNCATEGORIZED",
+        "number": 21000,
+        "description": "A system audit log event that is not a wipe."
+      },
+      {
+        "name": "SYSTEM_AUDIT_LOG_WIPE",
+        "number": 21001,
+        "description": "A system audit log wipe."
+      },
+      {
+        "name": "SERVICE_UNSPECIFIED",
+        "number": 22000,
+        "description": "Service event that does not fit into one of the other event types."
+      },
+      {
+        "name": "SERVICE_CREATION",
+        "number": 22001,
+        "description": "A service creation."
+      },
+      {
+        "name": "SERVICE_DELETION",
+        "number": 22002,
+        "description": "A service deletion."
+      },
+      {
+        "name": "SERVICE_START",
+        "number": 22003,
+        "description": "A service start."
+      },
+      {
+        "name": "SERVICE_STOP",
+        "number": 22004,
+        "description": "A service stop."
+      },
+      {
+        "name": "SERVICE_MODIFICATION",
+        "number": 22005,
+        "description": "A service modification."
+      },
+      {
+        "name": "GENERIC_EVENT",
+        "number": 100000,
+        "description": "Operating system events that are not described by any of the other event types. Might include uncategorized Microsoft Windows event logs."
+      },
+      {
+        "name": "RESOURCE_CREATION",
+        "number": 1,
+        "description": "The resource was created/provisioned. This is equivalent to USER_RESOURCE_CREATION."
+      },
+      {
+        "name": "RESOURCE_DELETION",
+        "number": 2,
+        "description": "The resource was deleted/deprovisioned. This is equivalent to USER_RESOURCE_DELETION."
+      },
+      {
+        "name": "RESOURCE_PERMISSIONS_CHANGE",
+        "number": 3,
+        "description": "The resource had it's permissions or ACLs updated. This is equivalent to USER_RESOURCE_UPDATE_PERMISSIONS."
+      },
+      {
+        "name": "RESOURCE_READ",
+        "number": 4,
+        "description": "The resource was read. This is equivalent to USER_RESOURCE_ACCESS."
+      },
+      {
+        "name": "RESOURCE_WRITTEN",
+        "number": 5,
+        "description": "The resource was written to. This is equivalent to USER_RESOURCE_UPDATE_CONTENT."
+      },
+      {
+        "name": "DEVICE_FIRMWARE_UPDATE",
+        "number": 25000,
+        "description": "Firmware update."
+      },
+      {
+        "name": "DEVICE_CONFIG_UPDATE",
+        "number": 25001,
+        "description": "Configuration update."
+      },
+      {
+        "name": "DEVICE_PROGRAM_UPLOAD",
+        "number": 25002,
+        "description": "A program or application uploaded to a device."
+      },
+      {
+        "name": "DEVICE_PROGRAM_DOWNLOAD",
+        "number": 25003,
+        "description": "A program or application downloaded to a device."
+      },
+      {
+        "name": "ANALYST_UPDATE_VERDICT",
+        "number": 24000,
+        "description": "Analyst update about the Verdict (such as true positive, false positive, or disregard) of a finding."
+      },
+      {
+        "name": "ANALYST_UPDATE_REPUTATION",
+        "number": 24001,
+        "description": "Analyst update about the Reputation (such as useful or not useful) of a finding."
+      },
+      {
+        "name": "ANALYST_UPDATE_SEVERITY_SCORE",
+        "number": 24002,
+        "description": "Analyst update about the Severity score (0-100) of a finding."
+      },
+      {
+        "name": "ANALYST_UPDATE_STATUS",
+        "number": 24007,
+        "description": "Analyst update about the finding status."
+      },
+      {
+        "name": "ANALYST_ADD_COMMENT",
+        "number": 24008,
+        "description": "Analyst addition of a comment for a finding."
+      },
+      {
+        "name": "ANALYST_UPDATE_PRIORITY",
+        "number": 24009,
+        "description": "Analyst update about the priority (such as low, medium, or high) for a finding."
+      },
+      {
+        "name": "ANALYST_UPDATE_ROOT_CAUSE",
+        "number": 24010,
+        "description": "Analyst update about the root cause for a finding."
+      },
+      {
+        "name": "ANALYST_UPDATE_REASON",
+        "number": 24011,
+        "description": "Analyst update about the reason (such as malicious or not malicious) for a finding."
+      },
+      {
+        "name": "ANALYST_UPDATE_RISK_SCORE",
+        "number": 24012,
+        "description": "Analyst update about the risk score (0-100) of a finding."
+      },
+      {
+        "name": "ENTITY_RISK_CHANGE",
+        "number": 26000,
+        "description": "An update to an entity risk score. This event type is restricted to events published by Google Security Operations Risk Analytics."
+      },
+      {
+        "name": "TRIAGE_AGENT_UPDATE_INVESTIGATION",
+        "number": 27000,
+        "description": "Triage Agent has investigated the finding."
+      }
+    ],
+    "Network.ApplicationProtocol": [
+      {
+        "name": "UNKNOWN_APPLICATION_PROTOCOL",
+        "number": 0,
+        "description": "The default application protocol."
+      },
+      {
+        "name": "AFP",
+        "number": 1,
+        "description": "Apple Filing Protocol."
+      },
+      {
+        "name": "APPC",
+        "number": 2,
+        "description": "Advanced Program-to-Program Communication."
+      },
+      {
+        "name": "AMQP",
+        "number": 3,
+        "description": "Advanced Message Queuing Protocol."
+      },
+      {
+        "name": "ATOM",
+        "number": 4,
+        "description": "Publishing Protocol."
+      },
+      {
+        "name": "BEEP",
+        "number": 5,
+        "description": "Block Extensible Exchange Protocol."
+      },
+      {
+        "name": "BITCOIN",
+        "number": 6,
+        "description": "Crypto currency protocol."
+      },
+      {
+        "name": "BIT_TORRENT",
+        "number": 7,
+        "description": "Peer-to-peer file sharing."
+      },
+      {
+        "name": "CFDP",
+        "number": 8,
+        "description": "Coherent File Distribution Protocol."
+      },
+      {
+        "name": "CIP",
+        "number": 67,
+        "description": "Common Industrial Protocol."
+      },
+      {
+        "name": "COAP",
+        "number": 9,
+        "description": "Constrained Application Protocol."
+      },
+      {
+        "name": "COTP",
+        "number": 68,
+        "description": "Connection Oriented Transport Protocol."
+      },
+      {
+        "name": "DCERPC",
+        "number": 66,
+        "description": "DCE/RPC."
+      },
+      {
+        "name": "DDS",
+        "number": 10,
+        "description": "Data Distribution Service."
+      },
+      {
+        "name": "DEVICE_NET",
+        "number": 11,
+        "description": "Automation industry protocol."
+      },
+      {
+        "name": "DHCP",
+        "number": 4000,
+        "description": "DHCP."
+      },
+      {
+        "name": "DICOM",
+        "number": 69,
+        "description": "Digital Imaging and Communications in Medicine Protocol."
+      },
+      {
+        "name": "DNP3",
+        "number": 70,
+        "description": "Distributed Network Protocol 3 (DNP3)"
+      },
+      {
+        "name": "DNS",
+        "number": 3000,
+        "description": "DNS."
+      },
+      {
+        "name": "E_DONKEY",
+        "number": 12,
+        "description": "Classic file sharing protocol."
+      },
+      {
+        "name": "ENRP",
+        "number": 13,
+        "description": "Endpoint Handlespace Redundancy Protocol."
+      },
+      {
+        "name": "FAST_TRACK",
+        "number": 14,
+        "description": "Filesharing peer-to-peer protocol."
+      },
+      {
+        "name": "FINGER",
+        "number": 15,
+        "description": "User Information Protocol."
+      },
+      {
+        "name": "FREENET",
+        "number": 16,
+        "description": "Censorship resistant peer-to-peer network."
+      },
+      {
+        "name": "FTAM",
+        "number": 17,
+        "description": "File Transfer Access and Management."
+      },
+      {
+        "name": "GOOSE",
+        "number": 71,
+        "description": "GOOSE Protocol."
+      },
+      {
+        "name": "GOPHER",
+        "number": 18,
+        "description": "Gopher protocol."
+      },
+      {
+        "name": "GRPC",
+        "number": 77,
+        "description": "gRPC Remote Procedure Call."
+      },
+      {
+        "name": "HL7",
+        "number": 19,
+        "description": "Health Level Seven."
+      },
+      {
+        "name": "H323",
+        "number": 20,
+        "description": "Packet-based multimedia communications system."
+      },
+      {
+        "name": "HTTP",
+        "number": 2000,
+        "description": "HTTP."
+      },
+      {
+        "name": "HTTPS",
+        "number": 2001,
+        "description": "HTTPS."
+      },
+      {
+        "name": "IEC104",
+        "number": 72,
+        "description": "IEC 60870-5-104 (IEC 104) Protocol."
+      },
+      {
+        "name": "IMAP",
+        "number": 81,
+        "description": "Internet Message Access Protocol."
+      },
+      {
+        "name": "IRCP",
+        "number": 21,
+        "description": "Internet Relay Chat Protocol."
+      },
+      {
+        "name": "KADEMLIA",
+        "number": 22,
+        "description": "Peer-to-peer hashtables."
+      },
+      {
+        "name": "KRB5",
+        "number": 65,
+        "description": "Kerberos 5."
+      },
+      {
+        "name": "LDAP",
+        "number": 23,
+        "description": "Lightweight Directory Access Protocol."
+      },
+      {
+        "name": "LPD",
+        "number": 24,
+        "description": "Line Printer Daemon Protocol."
+      },
+      {
+        "name": "MIME",
+        "number": 25,
+        "description": "Multipurpose Internet Mail Extensions and Secure MIME."
+      },
+      {
+        "name": "MMS",
+        "number": 73,
+        "description": "Multimedia Messaging Service."
+      },
+      {
+        "name": "MODBUS",
+        "number": 26,
+        "description": "Serial communications protocol."
+      },
+      {
+        "name": "MQTT",
+        "number": 27,
+        "description": "Message Queuing Telemetry Transport."
+      },
+      {
+        "name": "NETCONF",
+        "number": 28,
+        "description": "Network Configuration."
+      },
+      {
+        "name": "NFS",
+        "number": 29,
+        "description": "Network File System."
+      },
+      {
+        "name": "NIS",
+        "number": 30,
+        "description": "Network Information Service."
+      },
+      {
+        "name": "NNTP",
+        "number": 31,
+        "description": "Network News Transfer Protocol."
+      },
+      {
+        "name": "NTCIP",
+        "number": 32,
+        "description": "National Transportation Communications for Intelligent Transportation System."
+      },
+      {
+        "name": "NTP",
+        "number": 33,
+        "description": "Network Time Protocol."
+      },
+      {
+        "name": "OSCAR",
+        "number": 34,
+        "description": "AOL Instant Messenger Protocol."
+      },
+      {
+        "name": "PNRP",
+        "number": 35,
+        "description": "Peer Name Resolution Protocol."
+      },
+      {
+        "name": "POP3",
+        "number": 82,
+        "description": "Post Office Protocol version 3."
+      },
+      {
+        "name": "PTP",
+        "number": 74,
+        "description": "Precision Time Protocol."
+      },
+      {
+        "name": "QUIC",
+        "number": 1000,
+        "description": "QUIC."
+      },
+      {
+        "name": "RDP",
+        "number": 36,
+        "description": "Remote Desktop Protocol."
+      },
+      {
+        "name": "RELP",
+        "number": 37,
+        "description": "Reliable Event Logging Protocol."
+      },
+      {
+        "name": "RIP",
+        "number": 38,
+        "description": "Routing Information Protocol."
+      },
+      {
+        "name": "RLOGIN",
+        "number": 39,
+        "description": "Remote Login in UNIX Systems."
+      },
+      {
+        "name": "RPC",
+        "number": 40,
+        "description": "Remote Procedure Call."
+      },
+      {
+        "name": "RTMP",
+        "number": 41,
+        "description": "Real Time Messaging Protocol."
+      },
+      {
+        "name": "RTP",
+        "number": 42,
+        "description": "Real-time Transport Protocol."
+      },
+      {
+        "name": "RTPS",
+        "number": 43,
+        "description": "Real Time Publish Subscribe."
+      },
+      {
+        "name": "RTSP",
+        "number": 44,
+        "description": "Real Time Streaming Protocol."
+      },
+      {
+        "name": "SAP",
+        "number": 45,
+        "description": "Session Announcement Protocol."
+      },
+      {
+        "name": "SDP",
+        "number": 46,
+        "description": "Session Description Protocol."
+      },
+      {
+        "name": "SFTP",
+        "number": 80,
+        "description": "Secure File Transfer Protocol."
+      },
+      {
+        "name": "SIP",
+        "number": 47,
+        "description": "Session Initiation Protocol."
+      },
+      {
+        "name": "SLP",
+        "number": 48,
+        "description": "Service Location Protocol."
+      },
+      {
+        "name": "SMB",
+        "number": 49,
+        "description": "Server Message Block."
+      },
+      {
+        "name": "SMTP",
+        "number": 50,
+        "description": "Simple Mail Transfer Protocol."
+      },
+      {
+        "name": "SNMP",
+        "number": 75,
+        "description": "Simple Network Management Protocol."
+      },
+      {
+        "name": "SNTP",
+        "number": 51,
+        "description": "Simple Network Time Protocol."
+      },
+      {
+        "name": "SSH",
+        "number": 52,
+        "description": "Secure Shell."
+      },
+      {
+        "name": "SSMS",
+        "number": 53,
+        "description": "Secure SMS Messaging Protocol."
+      },
+      {
+        "name": "STYX",
+        "number": 54,
+        "description": "Styx/9P - Plan 9 from Bell Labs distributed file system protocol."
+      },
+      {
+        "name": "SV",
+        "number": 76,
+        "description": "Sampled Values Protocol."
+      },
+      {
+        "name": "TCAP",
+        "number": 55,
+        "description": "Transaction Capabilities Application Part."
+      },
+      {
+        "name": "TDS",
+        "number": 56,
+        "description": "Tabular Data Stream."
+      },
+      {
+        "name": "TELNET",
+        "number": 79,
+        "description": "Virtual Terminal Protocol."
+      },
+      {
+        "name": "TOR",
+        "number": 57,
+        "description": "Anonymity network."
+      },
+      {
+        "name": "TSP",
+        "number": 58,
+        "description": "Time Stamp Protocol."
+      },
+      {
+        "name": "VTP",
+        "number": 59,
+        "description": "Virtual Terminal Protocol."
+      },
+      {
+        "name": "WHOIS",
+        "number": 60,
+        "description": "Remote Directory Access Protocol."
+      },
+      {
+        "name": "WEB_DAV",
+        "number": 61,
+        "description": "Web Distributed Authoring and Versioning."
+      },
+      {
+        "name": "X400",
+        "number": 62,
+        "description": "Message Handling Service Protocol."
+      },
+      {
+        "name": "X500",
+        "number": 63,
+        "description": "Directory Access Protocol (DAP)."
+      },
+      {
+        "name": "XMPP",
+        "number": 64,
+        "description": "Extensible Messaging and Presence Protocol."
+      },
+      {
+        "name": "FTP",
+        "number": 78,
+        "description": "File Transfer Protocol."
+      }
+    ],
+    "Network.ConnectionState": [
+      {
+        "name": "CONNECTION_STATE_UNSPECIFIED",
+        "number": 0,
+        "description": "The default connection state."
+      },
+      {
+        "name": "LISTENING",
+        "number": 1,
+        "description": "The port is listening for incoming connections."
+      },
+      {
+        "name": "ESTABLISHED",
+        "number": 2,
+        "description": "A connection has been established."
+      },
+      {
+        "name": "TIME_WAIT",
+        "number": 3,
+        "description": "The connection is waiting for a timeout."
+      },
+      {
+        "name": "CLOSE_WAIT",
+        "number": 4,
+        "description": "The connection is waiting for a connection termination request from the local application."
+      },
+      {
+        "name": "CLOSED",
+        "number": 5,
+        "description": "The connection is closed."
+      },
+      {
+        "name": "SYN_SENT",
+        "number": 6,
+        "description": "A connection request has been sent."
+      },
+      {
+        "name": "SYN_RECEIVED",
+        "number": 7,
+        "description": "A connection request has been received."
+      },
+      {
+        "name": "FIN_WAIT1",
+        "number": 8,
+        "description": "The connection is waiting for a connection termination request from the remote host."
+      },
+      {
+        "name": "FIN_WAIT2",
+        "number": 9,
+        "description": "The connection is waiting for a connection termination request from the local application."
+      },
+      {
+        "name": "LAST_ACK",
+        "number": 10,
+        "description": "The connection is waiting for an acknowledgment of the final connection termination request."
+      }
+    ],
+    "Network.Direction": [
+      {
+        "name": "UNKNOWN_DIRECTION",
+        "number": 0,
+        "description": "The default direction."
+      },
+      {
+        "name": "INBOUND",
+        "number": 1,
+        "description": "An inbound request."
+      },
+      {
+        "name": "OUTBOUND",
+        "number": 2,
+        "description": "An outbound request."
+      },
+      {
+        "name": "BROADCAST",
+        "number": 3,
+        "description": "A broadcast."
+      }
+    ],
+    "Network.IpProtocol": [
+      {
+        "name": "UNKNOWN_IP_PROTOCOL",
+        "number": 0,
+        "description": "The default protocol."
+      },
+      {
+        "name": "ICMP",
+        "number": 1,
+        "description": "ICMP."
+      },
+      {
+        "name": "IGMP",
+        "number": 2,
+        "description": "IGMP"
+      },
+      {
+        "name": "TCP",
+        "number": 6,
+        "description": "TCP."
+      },
+      {
+        "name": "UDP",
+        "number": 17,
+        "description": "UDP."
+      },
+      {
+        "name": "IP6IN4",
+        "number": 41,
+        "description": "IPv6 Encapsulation"
+      },
+      {
+        "name": "GRE",
+        "number": 47,
+        "description": "Generic Routing Encapsulation"
+      },
+      {
+        "name": "ESP",
+        "number": 50,
+        "description": "Encapsulating Security Payload"
+      },
+      {
+        "name": "ICMP6",
+        "number": 58,
+        "description": "ICMPv6"
+      },
+      {
+        "name": "EIGRP",
+        "number": 88,
+        "description": "Enhanced Interior Gateway Routing"
+      },
+      {
+        "name": "ETHERIP",
+        "number": 97,
+        "description": "Ethernet-within-IP Encapsulation"
+      },
+      {
+        "name": "PIM",
+        "number": 103,
+        "description": "Protocol Independent Multicast"
+      },
+      {
+        "name": "VRRP",
+        "number": 112,
+        "description": "Virtual Router Redundancy Protocol"
+      },
+      {
+        "name": "SCTP",
+        "number": 132,
+        "description": "Stream Control Transmission Protocol"
+      }
+    ],
+    "Noun.Platform": [
+      {
+        "name": "UNKNOWN_PLATFORM",
+        "number": 0,
+        "description": "Default value."
+      },
+      {
+        "name": "WINDOWS",
+        "number": 1,
+        "description": "Microsoft Windows."
+      },
+      {
+        "name": "MAC",
+        "number": 2,
+        "description": "macOS."
+      },
+      {
+        "name": "LINUX",
+        "number": 3,
+        "description": "Linux."
+      },
+      {
+        "name": "GCP",
+        "number": 4,
+        "description": "Deprecated: see cloud.environment."
+      },
+      {
+        "name": "AWS",
+        "number": 5,
+        "description": "Deprecated: see cloud.environment."
+      },
+      {
+        "name": "AZURE",
+        "number": 6,
+        "description": "Deprecated: see cloud.environment."
+      },
+      {
+        "name": "IOS",
+        "number": 7,
+        "description": "IOS"
+      },
+      {
+        "name": "ANDROID",
+        "number": 8,
+        "description": "Android"
+      },
+      {
+        "name": "CHROME_OS",
+        "number": 9,
+        "description": "Chrome OS"
+      }
+    ],
+    "Permission.PermissionType": [
+      {
+        "name": "UNKNOWN_PERMISSION_TYPE",
+        "number": 0,
+        "description": "Default permission type."
+      },
+      {
+        "name": "ADMIN_WRITE",
+        "number": 1,
+        "description": "Administrator write permission."
+      },
+      {
+        "name": "ADMIN_READ",
+        "number": 2,
+        "description": "Administrator read permission."
+      },
+      {
+        "name": "DATA_WRITE",
+        "number": 3,
+        "description": "Data resource access write permission."
+      },
+      {
+        "name": "DATA_READ",
+        "number": 4,
+        "description": "Data resource access read permission."
+      }
+    ],
+    "Priority": [
+      {
+        "name": "PRIORITY_UNSPECIFIED",
+        "number": 0,
+        "description": "Default priority level."
+      },
+      {
+        "name": "PRIORITY_INFO",
+        "number": 100,
+        "description": "Informational priority."
+      },
+      {
+        "name": "PRIORITY_LOW",
+        "number": 200,
+        "description": "Low priority."
+      },
+      {
+        "name": "PRIORITY_MEDIUM",
+        "number": 300,
+        "description": "Medium priority."
+      },
+      {
+        "name": "PRIORITY_HIGH",
+        "number": 400,
+        "description": "High priority."
+      },
+      {
+        "name": "PRIORITY_CRITICAL",
+        "number": 500,
+        "description": "Critical priority."
+      }
+    ],
+    "Process.State": [
+      {
+        "name": "STATE_UNSPECIFIED",
+        "number": 0,
+        "description": "Undetermined state."
+      },
+      {
+        "name": "RUNNING",
+        "number": 1,
+        "description": "Process is running or runnable."
+      },
+      {
+        "name": "SLEEPING",
+        "number": 2,
+        "description": "Process is waiting for an event."
+      },
+      {
+        "name": "DISK_SLEEP",
+        "number": 3,
+        "description": "Process is in uninterruptible sleep, typically I/O."
+      },
+      {
+        "name": "STOPPED",
+        "number": 4,
+        "description": "Process is stopped."
+      },
+      {
+        "name": "TRACING_STOP",
+        "number": 5,
+        "description": "Process is stopped by debugger."
+      },
+      {
+        "name": "ZOMBIE",
+        "number": 6,
+        "description": "Process is terminated but not reaped by parent."
+      },
+      {
+        "name": "DEAD",
+        "number": 7,
+        "description": "Process is terminated."
+      },
+      {
+        "name": "WAKE_KILL",
+        "number": 8,
+        "description": "Process is woken to be killed."
+      },
+      {
+        "name": "WAKING",
+        "number": 9,
+        "description": "Process is waking from sleep."
+      },
+      {
+        "name": "PARKED",
+        "number": 10,
+        "description": "Linux specific: process is parked."
+      },
+      {
+        "name": "IDLE",
+        "number": 11,
+        "description": "Linux, macOS, and FreeBSD specific: process is idle."
+      },
+      {
+        "name": "LOCKED",
+        "number": 12,
+        "description": "FreeBSD specific: process is locked."
+      },
+      {
+        "name": "WAITING",
+        "number": 13,
+        "description": "FreeBSD specific: process is waiting."
+      },
+      {
+        "name": "SUSPENDED",
+        "number": 14,
+        "description": "NetBSD specific: process is suspended."
+      }
+    ],
+    "Process.TokenElevationType": [
+      {
+        "name": "UNKNOWN",
+        "number": 0,
+        "description": "An undetermined token type."
+      },
+      {
+        "name": "TYPE_1",
+        "number": 1,
+        "description": "A full token with no privileges removed or groups disabled."
+      },
+      {
+        "name": "TYPE_2",
+        "number": 2,
+        "description": "An elevated token with no privileges removed or groups disabled. Used when running as administrator."
+      },
+      {
+        "name": "TYPE_3",
+        "number": 3,
+        "description": "A limited token with administrative privileges removed and administrative groups disabled."
+      }
+    ],
+    "Reason": [
+      {
+        "name": "REASON_UNSPECIFIED",
+        "number": 0,
+        "description": "Default reason."
+      },
+      {
+        "name": "REASON_NOT_MALICIOUS",
+        "number": 1,
+        "description": "Case or Alert not malicious."
+      },
+      {
+        "name": "REASON_MALICIOUS",
+        "number": 2,
+        "description": "Case or Alert is malicious."
+      },
+      {
+        "name": "REASON_MAINTENANCE",
+        "number": 3,
+        "description": "Case or Alert is under maintenance."
+      }
+    ],
+    "Registry.Type": [
+      {
+        "name": "TYPE_UNSPECIFIED",
+        "number": 0,
+        "description": "Default registry value type used when the type is unknown."
+      },
+      {
+        "name": "NONE",
+        "number": 1,
+        "description": "The registry value is not set and only the key exists."
+      },
+      {
+        "name": "SZ",
+        "number": 2,
+        "description": "A null-terminated string."
+      },
+      {
+        "name": "EXPAND_SZ",
+        "number": 3,
+        "description": "A null-terminated string that contains unexpanded references to environment variables"
+      },
+      {
+        "name": "BINARY",
+        "number": 4,
+        "description": "Binary data in any form."
+      },
+      {
+        "name": "DWORD",
+        "number": 5,
+        "description": "A 32-bit number."
+      },
+      {
+        "name": "DWORD_LITTLE_ENDIAN",
+        "number": 6,
+        "description": "A 32-bit number in little-endian format."
+      },
+      {
+        "name": "DWORD_BIG_ENDIAN",
+        "number": 7,
+        "description": "A 32-bit number in big-endian format."
+      },
+      {
+        "name": "LINK",
+        "number": 8,
+        "description": "A null-terminated Unicode string that contains the target path of a symbolic link."
+      },
+      {
+        "name": "MULTI_SZ",
+        "number": 9,
+        "description": "A sequence of null-terminated strings, terminated by an empty string"
+      },
+      {
+        "name": "RESOURCE_LIST",
+        "number": 10,
+        "description": "A device driver resource list."
+      },
+      {
+        "name": "QWORD",
+        "number": 11,
+        "description": "A 64-bit number."
+      },
+      {
+        "name": "QWORD_LITTLE_ENDIAN",
+        "number": 12,
+        "description": "A 64-bit number in little-endian format."
+      }
+    ],
+    "Reputation": [
+      {
+        "name": "REPUTATION_UNSPECIFIED",
+        "number": 0,
+        "description": "An unspecified reputation."
+      },
+      {
+        "name": "USEFUL",
+        "number": 1,
+        "description": "A categorization of the finding as useful."
+      },
+      {
+        "name": "NOT_USEFUL",
+        "number": 2,
+        "description": "A categorization of the finding as not useful."
+      }
+    ],
+    "Resource.ResourceType": [
+      {
+        "name": "UNSPECIFIED",
+        "number": 0,
+        "description": "Default type."
+      },
+      {
+        "name": "MUTEX",
+        "number": 1,
+        "description": "Mutex."
+      },
+      {
+        "name": "TASK",
+        "number": 2,
+        "description": "Task."
+      },
+      {
+        "name": "PIPE",
+        "number": 3,
+        "description": "Named pipe."
+      },
+      {
+        "name": "DEVICE",
+        "number": 4,
+        "description": "Device."
+      },
+      {
+        "name": "FIREWALL_RULE",
+        "number": 5,
+        "description": "Firewall rule."
+      },
+      {
+        "name": "MAILBOX_FOLDER",
+        "number": 6,
+        "description": "Mailbox folder."
+      },
+      {
+        "name": "VPC_NETWORK",
+        "number": 7,
+        "description": "VPC Network."
+      },
+      {
+        "name": "VIRTUAL_MACHINE",
+        "number": 8,
+        "description": "Virtual machine."
+      },
+      {
+        "name": "STORAGE_BUCKET",
+        "number": 9,
+        "description": "Storage bucket."
+      },
+      {
+        "name": "STORAGE_OBJECT",
+        "number": 10,
+        "description": "Storage object."
+      },
+      {
+        "name": "DATABASE",
+        "number": 11,
+        "description": "Database."
+      },
+      {
+        "name": "TABLE",
+        "number": 12,
+        "description": "Data table."
+      },
+      {
+        "name": "CLOUD_PROJECT",
+        "number": 13,
+        "description": "Cloud project."
+      },
+      {
+        "name": "CLOUD_ORGANIZATION",
+        "number": 14,
+        "description": "Cloud organization."
+      },
+      {
+        "name": "SERVICE_ACCOUNT",
+        "number": 15,
+        "description": "Service account."
+      },
+      {
+        "name": "ACCESS_POLICY",
+        "number": 16,
+        "description": "Access policy."
+      },
+      {
+        "name": "CLUSTER",
+        "number": 17,
+        "description": "Cluster."
+      },
+      {
+        "name": "SETTING",
+        "number": 18,
+        "description": "Settings."
+      },
+      {
+        "name": "DATASET",
+        "number": 19,
+        "description": "Dataset."
+      },
+      {
+        "name": "BACKEND_SERVICE",
+        "number": 20,
+        "description": "Endpoint that receive traffic from a load balancer or proxy."
+      },
+      {
+        "name": "POD",
+        "number": 21,
+        "description": "Pod, which is a collection of containers. Often used in Kubernetes."
+      },
+      {
+        "name": "CONTAINER",
+        "number": 22,
+        "description": "Container."
+      },
+      {
+        "name": "FUNCTION",
+        "number": 23,
+        "description": "Cloud function."
+      },
+      {
+        "name": "RUNTIME",
+        "number": 24,
+        "description": "Runtime."
+      },
+      {
+        "name": "IP_ADDRESS",
+        "number": 25,
+        "description": "IP address."
+      },
+      {
+        "name": "DISK",
+        "number": 26,
+        "description": "Disk."
+      },
+      {
+        "name": "VOLUME",
+        "number": 27,
+        "description": "Volume."
+      },
+      {
+        "name": "IMAGE",
+        "number": 28,
+        "description": "Machine image."
+      },
+      {
+        "name": "SNAPSHOT",
+        "number": 29,
+        "description": "Snapshot."
+      },
+      {
+        "name": "REPOSITORY",
+        "number": 30,
+        "description": "Repository."
+      },
+      {
+        "name": "CREDENTIAL",
+        "number": 31,
+        "description": "Credential, e.g. access keys, ssh keys, tokens, certificates."
+      },
+      {
+        "name": "LOAD_BALANCER",
+        "number": 32,
+        "description": "Load balancer."
+      },
+      {
+        "name": "GATEWAY",
+        "number": 33,
+        "description": "Gateway."
+      },
+      {
+        "name": "SUBNET",
+        "number": 34,
+        "description": "Subnet."
+      },
+      {
+        "name": "USER",
+        "number": 35,
+        "description": "User."
+      },
+      {
+        "name": "SERVICE",
+        "number": 36,
+        "description": "Service."
+      }
+    ],
+    "Role.Type": [
+      {
+        "name": "TYPE_UNSPECIFIED",
+        "number": 0,
+        "description": "Default user role."
+      },
+      {
+        "name": "ADMINISTRATOR",
+        "number": 1,
+        "description": "Product administrator with elevated privileges."
+      },
+      {
+        "name": "SERVICE_ACCOUNT",
+        "number": 2,
+        "description": "System service account for automated privilege access."
+      }
+    ],
+    "SecurityResult.Action": [
+      {
+        "name": "UNKNOWN_ACTION",
+        "number": 0,
+        "description": "The default action."
+      },
+      {
+        "name": "ALLOW",
+        "number": 1,
+        "description": "Allowed."
+      },
+      {
+        "name": "BLOCK",
+        "number": 2,
+        "description": "Blocked."
+      },
+      {
+        "name": "ALLOW_WITH_MODIFICATION",
+        "number": 3,
+        "description": "Strip, modify something (e.g. File or email was disinfected or rewritten and still forwarded)."
+      },
+      {
+        "name": "QUARANTINE",
+        "number": 4,
+        "description": "Put somewhere for later analysis (does NOT imply block)."
+      },
+      {
+        "name": "FAIL",
+        "number": 5,
+        "description": "Failed (e.g. the event was allowed but failed)."
+      },
+      {
+        "name": "CHALLENGE",
+        "number": 6,
+        "description": "Challenged (e.g. the user was challenged by a Captcha, 2FA)."
+      }
+    ],
+    "SecurityResult.AlertState": [
+      {
+        "name": "UNSPECIFIED",
+        "number": 0,
+        "description": "The security result type is not known."
+      },
+      {
+        "name": "NOT_ALERTING",
+        "number": 1,
+        "description": "The security result is not an alert."
+      },
+      {
+        "name": "ALERTING",
+        "number": 2,
+        "description": "The security result is an alert."
+      }
+    ],
+    "SecurityResult.Association.AssociationType": [
+      {
+        "name": "ASSOCIATION_TYPE_UNSPECIFIED",
+        "number": 0,
+        "description": "The default Association Type."
+      },
+      {
+        "name": "THREAT_ACTOR",
+        "number": 1,
+        "description": "Association type Threat actor."
+      },
+      {
+        "name": "MALWARE",
+        "number": 2,
+        "description": "Association type Malware."
+      },
+      {
+        "name": "SOFTWARE_TOOLKIT",
+        "number": 3,
+        "description": "Association type Software toolkit."
+      }
+    ],
+    "SecurityResult.IoCStatsType": [
+      {
+        "name": "UNSPECIFIED_IOC_STATS_TYPE",
+        "number": 0,
+        "description": "IoCStat source is unidentified."
+      },
+      {
+        "name": "MANDIANT_SOURCES",
+        "number": 1,
+        "description": "IoCStat is from a Mandiant Source."
+      },
+      {
+        "name": "THIRD_PARTY_SOURCES",
+        "number": 2,
+        "description": "IoCStat is from a third-party source."
+      },
+      {
+        "name": "THREAT_INTELLIGENCE_IOC_STATS",
+        "number": 3,
+        "description": "IoCStat is from a threat intelligence feed."
+      }
+    ],
+    "SecurityResult.ProductConfidence": [
+      {
+        "name": "UNKNOWN_CONFIDENCE",
+        "number": 0,
+        "description": "The default confidence level."
+      },
+      {
+        "name": "LOW_CONFIDENCE",
+        "number": 200,
+        "description": "Low confidence."
+      },
+      {
+        "name": "MEDIUM_CONFIDENCE",
+        "number": 300,
+        "description": "Medium confidence."
+      },
+      {
+        "name": "HIGH_CONFIDENCE",
+        "number": 400,
+        "description": "High confidence."
+      }
+    ],
+    "SecurityResult.ProductPriority": [
+      {
+        "name": "UNKNOWN_PRIORITY",
+        "number": 0,
+        "description": "Default priority level."
+      },
+      {
+        "name": "LOW_PRIORITY",
+        "number": 200,
+        "description": "Low priority."
+      },
+      {
+        "name": "MEDIUM_PRIORITY",
+        "number": 300,
+        "description": "Medium priority."
+      },
+      {
+        "name": "HIGH_PRIORITY",
+        "number": 400,
+        "description": "High priority."
+      }
+    ],
+    "SecurityResult.ProductSeverity": [
+      {
+        "name": "UNKNOWN_SEVERITY",
+        "number": 0,
+        "description": "The default severity level."
+      },
+      {
+        "name": "INFORMATIONAL",
+        "number": 100,
+        "description": "Info severity."
+      },
+      {
+        "name": "ERROR",
+        "number": 150,
+        "description": "An error."
+      },
+      {
+        "name": "NONE",
+        "number": 101,
+        "description": "No malicious result."
+      },
+      {
+        "name": "LOW",
+        "number": 200,
+        "description": "Low-severity malicious result."
+      },
+      {
+        "name": "MEDIUM",
+        "number": 300,
+        "description": "Medium-severity malicious result."
+      },
+      {
+        "name": "HIGH",
+        "number": 400,
+        "description": "High-severity malicious result."
+      },
+      {
+        "name": "CRITICAL",
+        "number": 500,
+        "description": "Critical-severity malicious result."
+      }
+    ],
+    "SecurityResult.SecurityCategory": [
+      {
+        "name": "UNKNOWN_CATEGORY",
+        "number": 0,
+        "description": "The default category."
+      },
+      {
+        "name": "SOFTWARE_MALICIOUS",
+        "number": 10000,
+        "description": "Malware, spyware, rootkit."
+      },
+      {
+        "name": "SOFTWARE_SUSPICIOUS",
+        "number": 10100,
+        "description": "Below the conviction threshold; probably bad."
+      },
+      {
+        "name": "SOFTWARE_PUA",
+        "number": 10200,
+        "description": "Potentially Unwanted App (such as adware)."
+      },
+      {
+        "name": "NETWORK_MALICIOUS",
+        "number": 20000,
+        "description": "Includes C&C or network exploit."
+      },
+      {
+        "name": "NETWORK_SUSPICIOUS",
+        "number": 20100,
+        "description": "Suspicious activity, such as potential reverse tunnel."
+      },
+      {
+        "name": "NETWORK_CATEGORIZED_CONTENT",
+        "number": 20200,
+        "description": "Non-security related: URL has category like gambling or porn."
+      },
+      {
+        "name": "NETWORK_DENIAL_OF_SERVICE",
+        "number": 20300,
+        "description": "DoS, DDoS."
+      },
+      {
+        "name": "NETWORK_RECON",
+        "number": 20400,
+        "description": "Port scan detected by an IDS, probing of web app."
+      },
+      {
+        "name": "NETWORK_COMMAND_AND_CONTROL",
+        "number": 20500,
+        "description": "If we know this is a C&C channel."
+      },
+      {
+        "name": "ACL_VIOLATION",
+        "number": 30000,
+        "description": "Unauthorized access attempted, including attempted access to files, web services, processes, web objects, etc."
+      },
+      {
+        "name": "AUTH_VIOLATION",
+        "number": 40000,
+        "description": "Authentication failed (e.g. bad password or bad 2-factor authentication)."
+      },
+      {
+        "name": "EXPLOIT",
+        "number": 50000,
+        "description": "Exploit: For all manner of exploits including attempted overflows, bad protocol encodings, ROP, SQL injection, etc. For both network and host- based exploits."
+      },
+      {
+        "name": "DATA_EXFILTRATION",
+        "number": 60000,
+        "description": "DLP: Sensitive data transmission, copy to thumb drive."
+      },
+      {
+        "name": "DATA_AT_REST",
+        "number": 60100,
+        "description": "DLP: Sensitive data found at rest in a scan."
+      },
+      {
+        "name": "DATA_DESTRUCTION",
+        "number": 60200,
+        "description": "Attempt to destroy/delete data."
+      },
+      {
+        "name": "TOR_EXIT_NODE",
+        "number": 60300,
+        "description": "TOR Exit Nodes."
+      },
+      {
+        "name": "MAIL_SPAM",
+        "number": 70000,
+        "description": "Spam email, message, etc."
+      },
+      {
+        "name": "MAIL_PHISHING",
+        "number": 70100,
+        "description": "Phishing email, chat messages, etc."
+      },
+      {
+        "name": "MAIL_SPOOFING",
+        "number": 70200,
+        "description": "Spoofed source email address, etc."
+      },
+      {
+        "name": "POLICY_VIOLATION",
+        "number": 80000,
+        "description": "Security-related policy violation (e.g. firewall/proxy/HIPS rule violated, NAC block action)."
+      },
+      {
+        "name": "SOCIAL_ENGINEERING",
+        "number": 90001,
+        "description": "Threats which manipulate to break normal security procedures."
+      },
+      {
+        "name": "PHISHING",
+        "number": 90002,
+        "description": "Phishing pages, pops, https phishing etc."
+      }
+    ],
+    "SecurityResult.ThreatCollectionType": [
+      {
+        "name": "THREAT_COLLECTION_TYPE_UNSPECIFIED",
+        "number": 0,
+        "description": "Threat collection type is unspecified."
+      },
+      {
+        "name": "CAMPAIGN",
+        "number": 1,
+        "description": "Threat collection type is campaign."
+      },
+      {
+        "name": "REPORT",
+        "number": 2,
+        "description": "Threat collection type is report."
+      }
+    ],
+    "SecurityResult.ThreatStatus": [
+      {
+        "name": "THREAT_STATUS_UNSPECIFIED",
+        "number": 0,
+        "description": "Default threat status"
+      },
+      {
+        "name": "ACTIVE",
+        "number": 1,
+        "description": "Active threat."
+      },
+      {
+        "name": "CLEARED",
+        "number": 2,
+        "description": "Cleared threat."
+      },
+      {
+        "name": "FALSE_POSITIVE",
+        "number": 3,
+        "description": "False positive."
+      }
+    ],
+    "SecurityResult.VerdictResponse": [
+      {
+        "name": "VERDICT_RESPONSE_UNSPECIFIED",
+        "number": 0,
+        "description": "The default verdict response type."
+      },
+      {
+        "name": "MALICIOUS",
+        "number": 1,
+        "description": "VerdictResponse resulted a threat as malicious."
+      },
+      {
+        "name": "BENIGN",
+        "number": 2,
+        "description": "VerdictResponse resulted a threat as benign."
+      }
+    ],
+    "SecurityResult.VerdictType": [
+      {
+        "name": "VERDICT_TYPE_UNSPECIFIED",
+        "number": 0,
+        "description": "Verdict category not specified."
+      },
+      {
+        "name": "PROVIDER_ML_VERDICT",
+        "number": 1,
+        "description": "MLVerdict result provided from threat providers, like Mandiant. These fields are used to model Mandiant sources."
+      },
+      {
+        "name": "ANALYST_VERDICT",
+        "number": 2,
+        "description": "Verdict provided by the human analyst. These fields are used to model Mandiant sources."
+      }
+    ],
+    "Service.ServiceType": [
+      {
+        "name": "SERVICE_TYPE_UNSPECIFIED",
+        "number": 0,
+        "description": "Default service type."
+      },
+      {
+        "name": "KERNEL_DRIVER",
+        "number": 1,
+        "description": "A kernel driver."
+      },
+      {
+        "name": "FILE_SYSTEM_DRIVER",
+        "number": 2,
+        "description": "A file system driver."
+      },
+      {
+        "name": "WIN32_OWN_PROCESS",
+        "number": 3,
+        "description": "A process that is owned by the service. This is a Windows-specific service type."
+      },
+      {
+        "name": "WIN32_SHARE_PROCESS",
+        "number": 4,
+        "description": "A process that is shared by the service. This is a Windows-specific service type."
+      },
+      {
+        "name": "ADAPTER",
+        "number": 5,
+        "description": "An adapter. This is a Windows-specific service type."
+      },
+      {
+        "name": "RECOGNIZER_DRIVER",
+        "number": 6,
+        "description": "A recognizer driver. This is a Windows-specific service type."
+      },
+      {
+        "name": "INTERACTIVE_PROCESS",
+        "number": 7,
+        "description": "An interactive process. This is a Windows-specific service type."
+      }
+    ],
+    "Service.StartupType": [
+      {
+        "name": "STARTUP_TYPE_UNSPECIFIED",
+        "number": 0,
+        "description": "Default startup type."
+      },
+      {
+        "name": "AUTOMATIC",
+        "number": 1,
+        "description": "The service is started automatically."
+      },
+      {
+        "name": "MANUAL",
+        "number": 2,
+        "description": "The service is started manually by a user."
+      },
+      {
+        "name": "DISABLED",
+        "number": 3,
+        "description": "The service is disabled and will not start automatically."
+      }
+    ],
+    "Service.State": [
+      {
+        "name": "STATE_UNSPECIFIED",
+        "number": 0,
+        "description": "Default service status."
+      },
+      {
+        "name": "RUNNING",
+        "number": 1,
+        "description": "The service is running."
+      },
+      {
+        "name": "STOPPED",
+        "number": 2,
+        "description": "The service is stopped. This is a Windows-specific service status."
+      },
+      {
+        "name": "PAUSED",
+        "number": 3,
+        "description": "The service is paused. This is a Windows-specific service status."
+      },
+      {
+        "name": "COMPLETED",
+        "number": 4,
+        "description": "The service is completed."
+      },
+      {
+        "name": "START_PENDING",
+        "number": 5,
+        "description": "The service is starting."
+      },
+      {
+        "name": "STOP_PENDING",
+        "number": 6,
+        "description": "The service is stopping."
+      },
+      {
+        "name": "PAUSE_PENDING",
+        "number": 7,
+        "description": "The service is pausing."
+      },
+      {
+        "name": "CONTINUE_PENDING",
+        "number": 8,
+        "description": "The service is continuing."
+      }
+    ],
+    "Status": [
+      {
+        "name": "STATUS_UNSPECIFIED",
+        "number": 0,
+        "description": "Unspecified finding status."
+      },
+      {
+        "name": "NEW",
+        "number": 1,
+        "description": "New finding."
+      },
+      {
+        "name": "REVIEWED",
+        "number": 2,
+        "description": "When a finding has feedback."
+      },
+      {
+        "name": "CLOSED",
+        "number": 3,
+        "description": "When an analyst closes an finding."
+      },
+      {
+        "name": "OPEN",
+        "number": 4,
+        "description": "Open. Used to indicate that a Case / Alert is open."
+      }
+    ],
+    "ThreatVerdict": [
+      {
+        "name": "THREAT_VERDICT_UNSPECIFIED",
+        "number": 0,
+        "description": "Unspecified threat verdict level."
+      },
+      {
+        "name": "UNDETECTED",
+        "number": 1,
+        "description": "Undetected threat verdict level."
+      },
+      {
+        "name": "SUSPICIOUS",
+        "number": 2,
+        "description": "Suspicious threat verdict level."
+      },
+      {
+        "name": "MALICIOUS",
+        "number": 3,
+        "description": "Malicious threat verdict level."
+      }
+    ],
+    "User.AccountType": [
+      {
+        "name": "ACCOUNT_TYPE_UNSPECIFIED",
+        "number": 0,
+        "description": "Default user account type."
+      },
+      {
+        "name": "DOMAIN_ACCOUNT_TYPE",
+        "number": 1,
+        "description": "A human account part of some domain in directory services."
+      },
+      {
+        "name": "LOCAL_ACCOUNT_TYPE",
+        "number": 2,
+        "description": "A local machine account."
+      },
+      {
+        "name": "CLOUD_ACCOUNT_TYPE",
+        "number": 3,
+        "description": "A SaaS service account type (such as Slack or GitHub)."
+      },
+      {
+        "name": "SERVICE_ACCOUNT_TYPE",
+        "number": 4,
+        "description": "A non-human account for data access."
+      },
+      {
+        "name": "DEFAULT_ACCOUNT_TYPE",
+        "number": 5,
+        "description": "A system built in default account."
+      }
+    ],
+    "User.Role": [
+      {
+        "name": "UNKNOWN_ROLE",
+        "number": 0,
+        "description": "Default user role."
+      },
+      {
+        "name": "ADMINISTRATOR",
+        "number": 1,
+        "description": "Product administrator with elevated privileges."
+      },
+      {
+        "name": "SERVICE_ACCOUNT",
+        "number": 2,
+        "description": "System service account for automated privilege access. Deprecated: not a role, instead set User.account_type."
+      }
+    ],
+    "UsnJournal.Attribute": [
+      {
+        "name": "ATTRIBUTE_UNSPECIFIED",
+        "number": 0,
+        "description": "Unspecified attribute."
+      },
+      {
+        "name": "READ_ONLY",
+        "number": 1,
+        "description": "A file that is read-only."
+      },
+      {
+        "name": "HIDDEN",
+        "number": 2,
+        "description": "The file or directory is hidden."
+      },
+      {
+        "name": "SYSTEM",
+        "number": 3,
+        "description": "A file or directory that the operating system uses."
+      },
+      {
+        "name": "ARCHIVE",
+        "number": 4,
+        "description": "Archive file or directory."
+      },
+      {
+        "name": "COMPRESSED",
+        "number": 5,
+        "description": "A file or directory that is compressed."
+      },
+      {
+        "name": "ENCRYPTED",
+        "number": 6,
+        "description": "A file or directory that is encrypted."
+      },
+      {
+        "name": "DIRECTORY",
+        "number": 7,
+        "description": "The handle that identifies the directory."
+      },
+      {
+        "name": "DEVICE",
+        "number": 8,
+        "description": "Reserved for system use."
+      },
+      {
+        "name": "NORMAL",
+        "number": 9,
+        "description": "A file that does not have other attributes set."
+      },
+      {
+        "name": "TEMPORARY",
+        "number": 10,
+        "description": "A file that is being used for temporary storage."
+      },
+      {
+        "name": "SPARSE_FILE",
+        "number": 11,
+        "description": "A file that is a sparse file."
+      },
+      {
+        "name": "REPARSE_POINT",
+        "number": 12,
+        "description": "A file or directory that has an associated reparse point."
+      },
+      {
+        "name": "OFFLINE",
+        "number": 13,
+        "description": "The data of a file is not available immediately."
+      },
+      {
+        "name": "NOT_CONTENT_INDEXED",
+        "number": 14,
+        "description": "The file or directory is not to be indexed."
+      },
+      {
+        "name": "NON_CONTENT_INDEXED",
+        "number": 14,
+        "description": "Deprecated: Use NOT_CONTENT_INDEXED instead."
+      },
+      {
+        "name": "INTEGRITY_STREAM",
+        "number": 15,
+        "description": "The directory or user data stream is configured with integrity."
+      },
+      {
+        "name": "VIRTUAL",
+        "number": 16,
+        "description": "Reserved for system use."
+      },
+      {
+        "name": "NO_SCRUB_DATA",
+        "number": 17,
+        "description": "The user data stream not to be read by the background data integrity scanner."
+      },
+      {
+        "name": "EA",
+        "number": 18,
+        "description": "A file or directory with extended attributes."
+      },
+      {
+        "name": "PINNED",
+        "number": 19,
+        "description": "The file or directory should be kept fully present locally."
+      },
+      {
+        "name": "UNPINNED",
+        "number": 20,
+        "description": "The file or directory should not be kept fully present locally."
+      },
+      {
+        "name": "RECALL_ON_OPEN",
+        "number": 21,
+        "description": "The file or directory has no physical representation on the local system."
+      },
+      {
+        "name": "RECALL_ON_DATA_ACCESS",
+        "number": 22,
+        "description": "The file or directory is not fully present locally."
+      }
+    ],
+    "UsnJournal.Reason": [
+      {
+        "name": "REASON_UNSPECIFIED",
+        "number": 0,
+        "description": "Unspecified reason."
+      },
+      {
+        "name": "DATA_OVERWRITE",
+        "number": 1,
+        "description": "Data overwrite reason."
+      },
+      {
+        "name": "DATA_EXTEND",
+        "number": 2,
+        "description": "Data extend reason."
+      },
+      {
+        "name": "DATA_TRUNCATION",
+        "number": 3,
+        "description": "Data truncation reason."
+      },
+      {
+        "name": "NAMED_DATA_OVERWRITE",
+        "number": 4,
+        "description": "Named data overwrite reason."
+      },
+      {
+        "name": "NAMED_DATA_EXTEND",
+        "number": 5,
+        "description": "Named data extend reason."
+      },
+      {
+        "name": "NAMED_DATA_TRUNCATION",
+        "number": 6,
+        "description": "Named data truncation reason."
+      },
+      {
+        "name": "FILE_CREATE",
+        "number": 7,
+        "description": "File create reason."
+      },
+      {
+        "name": "FILE_DELETE",
+        "number": 8,
+        "description": "File delete reason."
+      },
+      {
+        "name": "EA_CHANGE",
+        "number": 9,
+        "description": "EA change reason."
+      },
+      {
+        "name": "SECURITY_CHANGE",
+        "number": 10,
+        "description": "Security change reason."
+      },
+      {
+        "name": "RENAME_OLD_NAME",
+        "number": 11,
+        "description": "Rename old name reason."
+      },
+      {
+        "name": "RENAME_NEW_NAME",
+        "number": 12,
+        "description": "Rename new name reason."
+      },
+      {
+        "name": "INDEXABLE_CHANGE",
+        "number": 13,
+        "description": "Indexable change reason."
+      },
+      {
+        "name": "BASIC_INFO_CHANGE",
+        "number": 14,
+        "description": "Basic info change reason."
+      },
+      {
+        "name": "HARD_LINK_CHANGE",
+        "number": 15,
+        "description": "Hard link change reason."
+      },
+      {
+        "name": "COMPRESSION_CHANGE",
+        "number": 16,
+        "description": "Compression change reason."
+      },
+      {
+        "name": "ENCRYPTION_CHANGE",
+        "number": 17,
+        "description": "Encryption change reason."
+      },
+      {
+        "name": "OBJECT_ID_CHANGE",
+        "number": 18,
+        "description": "Object ID change reason."
+      },
+      {
+        "name": "REPARSE_POINT_CHANGE",
+        "number": 19,
+        "description": "Reparse point change reason."
+      },
+      {
+        "name": "STREAM_CHANGE",
+        "number": 20,
+        "description": "Stream change reason."
+      },
+      {
+        "name": "TRANSACTED_CHANGE",
+        "number": 21,
+        "description": "Transacted change reason."
+      },
+      {
+        "name": "CLOSE",
+        "number": 22,
+        "description": "Close reason."
+      }
+    ],
+    "Verdict": [
+      {
+        "name": "VERDICT_UNSPECIFIED",
+        "number": 0,
+        "description": "An unspecified verdict."
+      },
+      {
+        "name": "TRUE_POSITIVE",
+        "number": 1,
+        "description": "A categorization of the finding as a \"true positive\"."
+      },
+      {
+        "name": "FALSE_POSITIVE",
+        "number": 2,
+        "description": "A categorization of the finding as a \"false positive\"."
+      }
+    ],
+    "Vulnerability.Severity": [
+      {
+        "name": "UNKNOWN_SEVERITY",
+        "number": 0,
+        "description": "The default severity level."
+      },
+      {
+        "name": "LOW",
+        "number": 1,
+        "description": "Low severity."
+      },
+      {
+        "name": "MEDIUM",
+        "number": 2,
+        "description": "Medium severity."
+      },
+      {
+        "name": "HIGH",
+        "number": 3,
+        "description": "High severity."
+      },
+      {
+        "name": "CRITICAL",
+        "number": 4,
+        "description": "Critical severity."
+      }
+    ],
+    "WindowsEventLog.Channel": [
+      {
+        "name": "CHANNEL_UNSPECIFIED",
+        "number": 0,
+        "description": "Default channel."
+      },
+      {
+        "name": "SECURITY",
+        "number": 1,
+        "description": "The security channel."
+      },
+      {
+        "name": "SYSTEM",
+        "number": 2,
+        "description": "The system channel."
+      },
+      {
+        "name": "APPLICATION",
+        "number": 3,
+        "description": "The application channel."
+      },
+      {
+        "name": "SETUP",
+        "number": 4,
+        "description": "The setup channel."
+      },
+      {
+        "name": "FORWARDED_EVENTS",
+        "number": 5,
+        "description": "The forwarded events channel."
+      },
+      {
+        "name": "OTHER",
+        "number": 6,
+        "description": "The other channel."
+      }
+    ],
+    "WindowsScheduledTask.TaskAction.ActionType": [
+      {
+        "name": "ACTION_TYPE_UNSPECIFIED",
+        "number": 0,
+        "description": "The action type is not specified."
+      },
+      {
+        "name": "EXEC",
+        "number": 1,
+        "description": "This action performs a command-line operation. For example, the action can run a script, launch an executable, or, if the name of a document is provided, find its associated application and launch the application with the document."
+      },
+      {
+        "name": "COM_HANDLER",
+        "number": 2,
+        "description": "This action fires a handler. This action can only be used if the task Compatibility property is set to TASK_COMPATIBILITY_V2."
+      },
+      {
+        "name": "SEND_EMAIL",
+        "number": 3,
+        "description": "This action sends an email message. This action can only be used if the task Compatibility property is set to TASK_COMPATIBILITY_V2."
+      },
+      {
+        "name": "SHOW_MESSAGE",
+        "number": 4,
+        "description": "This action shows a message box. This action can only be used if the task Compatibility property is set to TASK_COMPATIBILITY_V2."
+      }
+    ],
+    "WindowsScheduledTask.TaskLogonType": [
+      {
+        "name": "TASK_LOGON_TYPE_UNSPECIFIED",
+        "number": 0,
+        "description": "The logon method is not specified. Used for non-NT credentials."
+      },
+      {
+        "name": "PASSWORD",
+        "number": 1,
+        "description": "Use a password for logging on the user. The password must be supplied at registration time."
+      },
+      {
+        "name": "S4U",
+        "number": 2,
+        "description": "Use an existing interactive token to run a task. The user must log on using a service for user (S4U) logon. When an S4U logon is used, no password is stored by the system and there is no access to either the network or encrypted files."
+      },
+      {
+        "name": "INTERACTIVE_TOKEN",
+        "number": 3,
+        "description": "User must already be logged on. The task will be run only in an existing interactive session."
+      },
+      {
+        "name": "GROUP",
+        "number": 4,
+        "description": "Logon with group credentials."
+      },
+      {
+        "name": "SERVICE_ACCOUNT",
+        "number": 5,
+        "description": "Indicates that a Local System, Local Service, or Network Service account is being used as a security context to run the task."
+      },
+      {
+        "name": "INTERACTIVE_TOKEN_OR_PASSWORD",
+        "number": 6,
+        "description": "First use the interactive token. If the user is not logged on (no interactive token is available), the password is used. The password must be specified when a task is registered. This flag is not recommended for new tasks because it is less reliable than TASK_LOGON_PASSWORD."
+      }
+    ],
+    "WindowsScheduledTask.TaskState": [
+      {
+        "name": "TASK_STATE_UNSPECIFIED",
+        "number": 0,
+        "description": "The state of the task is unknown or not specified."
+      },
+      {
+        "name": "DISABLED",
+        "number": 1,
+        "description": "The task is registered but is disabled and no instances of the task are queued or running. The task cannot be run until it is enabled."
+      },
+      {
+        "name": "QUEUED",
+        "number": 2,
+        "description": "Instances of the task are queued."
+      },
+      {
+        "name": "ACTIVE",
+        "number": 3,
+        "description": "The task is ready to be executed, but no instances are queued or running."
+      },
+      {
+        "name": "RUNNING",
+        "number": 4,
+        "description": "One or more instances of the task are running."
+      }
+    ],
+    "WindowsScheduledTask.TaskTrigger.TriggerType": [
+      {
+        "name": "TRIGGER_TYPE_UNSPECIFIED",
+        "number": 0,
+        "description": "The trigger frequency is not specified."
+      },
+      {
+        "name": "EVENT",
+        "number": 1,
+        "description": "Triggers the task when a specific event occurs."
+      },
+      {
+        "name": "TIME",
+        "number": 2,
+        "description": "Triggers the task at a specific time of day."
+      },
+      {
+        "name": "DAILY",
+        "number": 3,
+        "description": "Triggers the task on a daily schedule. For example, the task starts at a specific time every day, every other day, or every third day."
+      },
+      {
+        "name": "WEEKLY",
+        "number": 4,
+        "description": "Triggers the task on a weekly schedule. For example, the task starts at 8:00 AM on a specific day every week or other week."
+      },
+      {
+        "name": "MONTHLY",
+        "number": 5,
+        "description": "Triggers the task on a monthly schedule. For example, the task starts on specific days of specific months."
+      },
+      {
+        "name": "MONTHLYDOW",
+        "number": 6,
+        "description": "Triggers the task on a monthly day-of-week schedule. For example, the task starts on a specific days of the week, weeks of the month, and months of the year."
+      },
+      {
+        "name": "IDLE",
+        "number": 7,
+        "description": "Triggers the task when the computer goes into an idle state."
+      },
+      {
+        "name": "REGISTRATION",
+        "number": 8,
+        "description": "Triggers the task when the task is registered."
+      },
+      {
+        "name": "BOOT",
+        "number": 9,
+        "description": "Triggers the task when the computer boots."
+      },
+      {
+        "name": "LOGON",
+        "number": 10,
+        "description": "Triggers the task when a specific user logs on."
+      },
+      {
+        "name": "SESSION_STATE_CHANGE",
+        "number": 11,
+        "description": "Triggers the task when a specific user session state changes."
+      },
+      {
+        "name": "CUSTOM_TRIGGER01",
+        "number": 12,
+        "description": "Custom trigger 01."
+      }
+    ]
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "events": [
+    {
+      "metadata": {
+        "event_type": "NETWORK_CONNECTION",
+        "product_name": "Test Product",
+        "event_timestamp": "2026-03-15T10:00:20.021Z",
+        "ingestion_labels": [
+          {"key": "team", "value": "sec"},
+          {"key": "env", "value": "prod"}
+        ]
+      },
+      "principal": {
+        "hostname": "win-server-01",
+        "ip": ["10.0.0.5"]
+      },
+      "target": {
+        "hostname": "ext-host",
+        "port": 443
+      },
+      "security_result": [
+        {"action": "ALLOW", "description": "ok"},
+        {"action": "BLOCK", "description": "bad"}
+      ],
+      "additional": {"pod_name": "kube-scheduler"},
+      "network": {"dns": {"response": true}}
+    },
+    {
+      "metadata": {
+        "event_type": "USER_LOGIN",
+        "product_name": "Test Product",
+        "event_timestamp": "2026-03-15T11:05:00.000Z"
+      },
+      "principal": {
+        "hostname": "laptop-02",
+        "ip": ["10.0.0.9"]
+      },
+      "target": {
+        "hostname": "auth-server",
+        "port": 443
+      },
+      "security_result": [
+        {"action": "ALLOW", "description": "login ok"}
+      ],
+      "network": {"dns": {"response": false}}
+    },
+    {
+      "metadata": {
+        "event_type": "NETWORK_CONNECTION",
+        "product_name": "Test Product",
+        "event_timestamp": "2026-03-15T12:00:00.000Z"
+      },
+      "principal": {
+        "hostname": "win-server-01",
+        "ip": ["10.0.0.5"]
+      },
+      "target": {
+        "hostname": "other-host",
+        "port": 8080
+      },
+      "security_result": [
+        {"action": "BLOCK", "description": "bad2"}
+      ]
+    }
+  ]
+}

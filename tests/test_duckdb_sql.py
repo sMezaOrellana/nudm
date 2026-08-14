@@ -144,3 +144,22 @@ def test_undefined_variable_raises(conn):
 def test_unsupported_scalar_function_raises(conn):
     with pytest.raises(UDMCompileError):
         nudm.search('timestamp.get_date(metadata.event_timestamp.seconds) = "2026-03-15"', conn)
+
+
+def test_unknown_field_raises(conn):
+    with pytest.raises(UDMCompileError):
+        nudm.search('principal.ssdfdfs = "asdasd"', conn)
+
+
+def test_invalid_enum_value_raises(conn):
+    with pytest.raises(UDMCompileError):
+        nudm.search('metadata.event_type = "PROCESS_HERPING"', conn)
+    with pytest.raises(UDMCompileError):
+        nudm.search('metadata.event_type != "PROCESS_HERPING"', conn)
+
+
+def test_valid_enum_value_and_empty_string_idiom_still_work(conn):
+    result = nudm.search('metadata.event_type = "PROCESS_LAUNCH"', conn)
+    assert result["events"] == []
+    result = nudm.search('metadata.event_type != ""', conn)
+    assert len(result["events"]) == 3

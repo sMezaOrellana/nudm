@@ -153,6 +153,24 @@ $e.principal.ip in %suspicious.ip'''
     assert isinstance(ast.where, And)
 
 
+def test_implicit_and_same_line_no_newline():
+    # Two top-level conditions juxtaposed with only whitespace (no newline,
+    # no explicit "and") still combine with an implicit AND.
+    q = 'principal.hostname = "asd" metadata.event_type = "PROCESS_LAUNCH"'
+    ast = parse(q)
+    assert len(ast.events) == 2
+    assert isinstance(ast.where, And)
+
+
+def test_implicit_and_requires_explicit_operator_inside_parens():
+    # The implicit-AND juxtaposition only applies at the top level; inside
+    # ( ... ) an explicit and/or is required even across a newline.
+    q = '''(principal.hostname = "asd"
+metadata.event_type = "PROCESS_LAUNCH")'''
+    with pytest.raises(UDMQueryError):
+        parse(q)
+
+
 def test_block_and_line_comments():
     q = '''additional.fields["pod_name"] = "kube-scheduler"
 /*
@@ -339,4 +357,4 @@ def test_invalid_query_raises():
     with pytest.raises(UDMQueryError):
         parse('metadata.event_type === "X"')
     with pytest.raises(UDMQueryError):
-        parse('metadata.event_type = "NETWORK_CONNECTION" and and target.ip = "1.1.1.1"')
+        parse('(metadata.event_type = "NETWORK_CONNECTION" and target.ip = "1.1.1.1"')

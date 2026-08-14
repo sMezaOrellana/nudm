@@ -103,15 +103,27 @@ def _step_int(sql: str, idx: int) -> str:
     return f"json_extract({sql}, '$[{idx}]')"
 
 
-def _compile_predicate(segments: tuple, schema: UDMSchema, base: str, leaf: Leaf) -> str:
+def _compile_predicate(
+    segments: tuple, schema: UDMSchema, base: str, leaf: Leaf,
+    path_prefix: tuple[str, ...] = (),
+) -> str:
     """Walk a FieldRef's segments starting at ``base`` (a SQL expression
     yielding a JSON value). Applies ``leaf(value_sql, field_info)`` once the
     path bottoms out, except that a ``repeated`` segment not immediately
     followed by an explicit index turns the *rest* of the walk into an
     ``EXISTS`` predicate over each array element (UDM's implicit
-    any-element-matches semantics for repeated fields)."""
+    any-element-matches semantics for repeated fields).
+
+    Every plain path segment is validated against ``schema`` as it's
+    consumed (every prefix of a real UDM field path is itself a schema
+    entry, so this catches a typo'd/nonexistent field as soon as the walk
+    diverges from the schema) -- except once a dynamic map/struct key has
+    been crossed, since schema lookup can't see past that point.
+    ``path_prefix`` seeds ``path_parts`` when recursing into a repeated
+    field's element type, so validation keeps using full dotted paths."""
     sql = base
-    path_parts: list[str] = []
+    path_parts: list[str] = list(path_prefix)
+    known = True
     i = 0
     n = len(segments)
     while i < n:
@@ -133,6 +145,7 @@ def _compile_predicate(segments: tuple, schema: UDMSchema, base: str, leaf: Leaf
                 # google.protobuf.Struct-style map field.
                 sql = _step_str(sql, seg.value)
             path_parts = []  # schema lookup can't see past a dynamic key
+            known = False
             i += 1
             continue
         # The ``.fields[...]`` UDM DSL idiom (e.g. ``additional.fields["x"]``):
@@ -151,6 +164,8 @@ def _compile_predicate(segments: tuple, schema: UDMSchema, base: str, leaf: Leaf
         path_parts.append(seg)
         cur_path = ".".join(path_parts)
         info = schema.lookup(cur_path)
+        if known and info is None and cur_path != "graph":
+            raise UDMCompileError(f"Unknown UDM field: {cur_path!r}")
         if info and info.repeated:
             if i + 1 < n and isinstance(segments[i + 1], int):
                 sql = _step_str(sql, seg)
@@ -167,12 +182,13 @@ def _compile_predicate(segments: tuple, schema: UDMSchema, base: str, leaf: Leaf
                     f"WHERE json_extract_string(t.value, '$.\"key\"') = '{key_lit}' LIMIT 1)"
                 )
                 path_parts = []
+                known = False
                 i += 2
                 continue
             array_sql = _step_str(sql, seg)
             remainder = segments[i + 1:]
             inner = (
-                _compile_predicate(remainder, schema, "t.value", leaf)
+                _compile_predicate(remainder, schema, "t.value", leaf, path_prefix=tuple(path_parts))
                 if remainder else leaf("t.value", info)
             )
             return f"EXISTS (SELECT 1 FROM json_each({array_sql}) AS t WHERE {inner})"
@@ -281,6 +297,24 @@ def _text(sql: str, is_json: bool) -> str:
 _OPS = {"=": "=", "!=": "!=", "<": "<", ">": ">", "<=": "<=", ">=": ">="}
 
 
+def _check_enum_literal(info: Optional[FieldInfo], lit: Expr, schema: UDMSchema) -> None:
+    """Raise if ``lit`` is a string/bare literal compared against an
+    enum-typed field but isn't one of that enum's real member names. The
+    ``field = ""`` / ``field != ""`` existence-check idiom is exempted: an
+    empty string there isn't claiming to be an enum value."""
+    if (
+        info is None or not info.enum
+        or not isinstance(lit, Literal) or lit.kind not in ("string", "bare")
+        or lit.value == ""
+    ):
+        return
+    values = schema.enum_values(info.type)
+    if values is not None and lit.value not in values:
+        raise UDMCompileError(
+            f"{lit.value!r} is not a valid value for enum {info.type} (field {info.path!r})"
+        )
+
+
 def _compile_comparison(cmp: Comparison, ctx: CompileContext) -> str:
     left_is_field = isinstance(cmp.left, FieldRef)
     right_is_field = isinstance(cmp.right, FieldRef)
@@ -333,6 +367,7 @@ def _compile_comparison(cmp: Comparison, ctx: CompileContext) -> str:
         other_sql, other_info, other_json = _plain_scalar(cmp.right, ctx)
 
         def leaf(value_sql: str, info: Optional[FieldInfo]) -> str:
+            _check_enum_literal(info, cmp.right, ctx.schema)
             if cmp.nocase:
                 return f"LOWER({_text(value_sql, True)}) {op} LOWER({_text(other_sql, other_json)})"
             return f"{_typed(value_sql, info, True)} {op} {_typed(other_sql, info or other_info, other_json)}"
@@ -343,6 +378,7 @@ def _compile_comparison(cmp: Comparison, ctx: CompileContext) -> str:
         other_sql, other_info, other_json = _plain_scalar(cmp.left, ctx)
 
         def leaf(value_sql: str, info: Optional[FieldInfo]) -> str:
+            _check_enum_literal(info, cmp.left, ctx.schema)
             if cmp.nocase:
                 return f"LOWER({_text(other_sql, other_json)}) {op} LOWER({_text(value_sql, True)})"
             return f"{_typed(other_sql, info or other_info, other_json)} {op} {_typed(value_sql, info, True)}"

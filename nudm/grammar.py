@@ -12,7 +12,12 @@ Notes on design decisions:
 * ``nl`` is trivia containing at least one newline. Newlines separate
   statements in the events section; two adjacent condition lines combine
   with an implicit AND (per the docs: "AND is assumed if you omit an
-  operator between two conditions").
+  operator between two conditions"). At the top level this implicit AND
+  also applies across plain whitespace with no newline at all (``body_sep``
+  falls back to a bare run of spaces/tabs) -- but only at the top level.
+  Inside ``( ... )`` a parenthesized group is a single ``or_expr``, which
+  has no such fallback, so two conditions grouped in parens *must* be
+  joined with an explicit ``and``/``or`` even across a newline.
 * Explicit ``and``/``or``/``not`` operate across newlines because their
   surrounding whitespace rule is ``_``.
 * ``line = assign / or_expr``: ``$x = <field path | function call>`` is an
@@ -28,7 +33,8 @@ query        = _ events_sec? match_sec? outcome_sec? dedup_sec? order_sec? limit
 
 events_sec   = events_hdr? body
 events_hdr   = ~r"events(?![A-Za-z0-9_])"i _ ":" _
-body         = line (nl !section_hdr line)*
+body         = line (body_sep !section_hdr line)*
+body_sep     = nl / ~r"[ \t\r]+"
 line         = assign / or_expr
 assign       = variable _ "=" _ assign_rhs
 assign_rhs   = func_call / bare_path

@@ -10,10 +10,12 @@ reference (e.g. ``ip`` expands to ``principal.ip``, ``target.ip``, ...).
 from __future__ import annotations
 
 import csv
+import json
 from dataclasses import dataclass
 from pathlib import Path
 
 DEFAULT_CSV = Path(__file__).resolve().parent.parent / "udm_fields.csv"
+DEFAULT_ENUMS_JSON = Path(__file__).resolve().parent.parent / "udm_enums.json"
 
 # Grouped UDM fields, as documented in
 # https://docs.cloud.google.com/chronicle/docs/investigation/udm-search#search_grouped_fields
@@ -87,7 +89,10 @@ class FieldInfo:
 class UDMSchema:
     """Lookup of UDM field metadata by dotted path (event root)."""
 
-    def __init__(self, csv_path: str | Path = DEFAULT_CSV):
+    def __init__(
+        self, csv_path: str | Path = DEFAULT_CSV,
+        enums_path: str | Path = DEFAULT_ENUMS_JSON,
+    ):
         self._fields: dict[str, FieldInfo] = {}
         path = Path(csv_path)
         if path.exists():
@@ -106,8 +111,20 @@ class UDMSchema:
                                       row["label"], row["enum"] == "True"),
                         )
 
+        self._enums: dict[str, frozenset[str]] = {}
+        enums_path = Path(enums_path)
+        if enums_path.exists():
+            data = json.loads(enums_path.read_text(encoding="utf-8"))
+            for type_name, members in data.get("enums", {}).items():
+                self._enums[type_name] = frozenset(m["name"] for m in members)
+
     def lookup(self, path: str) -> FieldInfo | None:
         return self._fields.get(path)
+
+    def enum_values(self, type_name: str) -> frozenset[str] | None:
+        """The valid member names of an enum type (e.g. ``Metadata.EventType``),
+        or ``None`` if ``type_name`` isn't a known enum."""
+        return self._enums.get(type_name)
 
     def type_of(self, path: str) -> str:
         info = self._fields.get(path)

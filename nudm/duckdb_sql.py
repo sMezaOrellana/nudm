@@ -210,12 +210,12 @@ def _path_to_segments(path: str) -> tuple:
     return tuple(path.split("."))
 
 
-def _field_predicate(fr: FieldRef, ctx: CompileContext, leaf: Leaf) -> str:
+def _field_predicate(fr: FieldRef, ctx: CompileContext, leaf: Leaf, base: str = "event") -> str:
     grouped = _resolve_grouped(fr)
     if grouped is not None:
-        parts = [_compile_predicate(_path_to_segments(p), ctx.schema, "event", leaf) for p in grouped]
+        parts = [_compile_predicate(_path_to_segments(p), ctx.schema, base, leaf) for p in grouped]
         return "(" + " OR ".join(parts) + ")"
-    return _compile_predicate(fr.segments, ctx.schema, "event", leaf)
+    return _compile_predicate(fr.segments, ctx.schema, base, leaf)
 
 
 def _existence_leaf(value_sql: str, info: Optional[FieldInfo]) -> str:
@@ -265,7 +265,7 @@ def _plain_scalar(expr: Expr, ctx: CompileContext, base: str = "event") -> tuple
             holder["sql"] = value_sql
             return value_sql
 
-        sql = _field_predicate(expr, ctx, leaf)
+        sql = _field_predicate(expr, ctx, leaf, base)
         return sql, holder.get("info"), True
     if isinstance(expr, FuncCall):
         raise UDMCompileError(f"Scalar function {expr.name!r} is not supported in conditions")

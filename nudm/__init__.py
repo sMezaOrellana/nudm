@@ -23,8 +23,11 @@ from .nodes import (
 from .duckdb_sql import UDMCompileError, compile_query
 from .fake_data import load_events, load_reference_list
 from .parser import UDMQueryError, parse
+from .rule_nodes import EventCount, EventRef, Rule
+from .rule_parser import UDMRuleError, parse_rule
+from .rule_sql import compile_rule
 from .schema import UDMSchema
-from .search import search
+from .search import run_rule, search
 
 __all__ = [
     "parse",
@@ -51,4 +54,13 @@ __all__ = [
     "load_events",
     "load_reference_list",
     "search",
+    # YARA-L 2.0 rules (distinct path: rule name { meta: events: match:
+    # outcome: condition: options: })
+    "parse_rule",
+    "compile_rule",
+    "run_rule",
+    "UDMRuleError",
+    "Rule",
+    "EventRef",
+    "EventCount",
 ]

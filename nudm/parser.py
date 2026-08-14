@@ -160,9 +160,15 @@ def _build_match(node: Node) -> list[MatchItem]:
                 "w": "week", "wk": "week", "wks": "week", "weeks": "week",
                 "mo": "month", "mos": "month", "months": "month",
             }.get(unit, unit)
+            anchor_node = _child(grain_node, "anchor_clause")
+            anchor = pivot = None
+            if anchor_node is not None:
+                anchor = _child(anchor_node, "anchor_dir").text.lower()
+                pivot = _build_variable(_child(anchor_node, "variable"))
             grain = TimeGrain(unit=unit,
                               quantity=int(qty.text.strip()) if qty else 1,
-                              first=_child(grain_node, "first_kw") is not None)
+                              first=_child(grain_node, "first_kw") is not None,
+                              anchor=anchor, pivot=pivot)
         items.append(MatchItem(expr=_build_expr_node(expr_node), grain=grain))
     return items
 
@@ -242,6 +248,11 @@ def _build_expr_node(node: Node) -> Expr:
         args = _child(node, "arg_list")
         arg_exprs = tuple(_build_expr(c) for c in _children(args, "expr")) if args else ()
         return FuncCall(name=fname, args=arg_exprs)
+    if name == "or_expr":
+        # A function argument may be a full boolean condition, e.g.
+        # ``if(x > 1, ...)``. _build_or already collapses a single bare
+        # term (no and/or) down to that term's own node.
+        return _build_or(node)
     if name == "list_ref":
         idents = _children(node, "ident")
         return ListRef(table=idents[0].text,
@@ -250,9 +261,6 @@ def _build_expr_node(node: Node) -> Expr:
         return VarRef(name=_build_variable(node))
     if name == "field_ref":
         return _build_field_ref(_inner(node))
-    if name in ("bare_path", "dollar_prefixed"):
-        # assign_rhs = func_call / bare_path bypasses the field_ref wrapper.
-        return _build_field_ref(node)
     if name == "literal":
         return _build_literal(_inner(node))
     raise UDMQueryError(f"Cannot build expression from rule {name!r}: {node.text!r}")

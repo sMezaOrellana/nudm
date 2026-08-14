@@ -117,10 +117,13 @@ class Assign(Expr):
 
 @dataclass
 class TimeGrain:
-    """Time granularity on a match item: ``[by|over every] [first] [N] unit``."""
+    """Time granularity on a match item: ``[by|over every] [first] [N] unit
+    [before|after $pivot]``."""
     unit: str                 # minute, hour, day, week, month
     quantity: int = 1
     first: bool = False       # group by range start only
+    anchor: Optional[str] = None   # "before" | "after" | None (plain tumbling window)
+    pivot: Optional[str] = None    # the event-variable name the window is anchored to
 
 
 @dataclass

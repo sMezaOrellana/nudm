@@ -8,6 +8,8 @@ from typing import Optional
 from .duckdb_sql import compile_query
 from .parser import parse
 from .response import build_event_response, build_result_response
+from .rule_parser import parse_rule
+from .rule_sql import compile_rule
 from .schema import UDMSchema
 
 _schema: Optional[UDMSchema] = None
@@ -37,3 +39,21 @@ def search(
         column_names = [d[0] for d in cursor.description]
         return build_result_response(rows, column_names)
     return build_event_response(rows)
+
+
+def run_rule(
+    rule_text: str, conn, *,
+    schema: Optional[UDMSchema] = None,
+    params: Optional[dict[str, str]] = None,
+) -> dict:
+    """Parse a YARA-L 2.0 rule (``rule name { ... }``), compile it to SQL,
+    run it against ``conn``, and return the detections reshaped into a
+    ``{"results": [...]}`` envelope (same shape as a match+outcome UDM
+    query's result, since a rule's output -- correlated/grouped detections
+    -- is structurally identical)."""
+    rule = parse_rule(rule_text)
+    result = compile_rule(rule, schema or _default_schema(), params)
+    cursor = conn.execute(result)
+    rows = cursor.fetchall()
+    column_names = [d[0] for d in cursor.description]
+    return build_result_response(rows, column_names)

@@ -1,0 +1,28 @@
+filter {
+    grok {
+        match => { "message" => "%{SYSLOGTIMESTAMP:when} %{DATA:device}: FW-%{INT:messageid}: (?P<action>Accepted|Denied) connection %{WORD:protocol} %{IP:srcAddr}/%{INT:srcPort} to %{IP:dstAddr}/%{INT:dstPort}" }
+        on_error => "grok_failure"
+    }
+    if ![grok_failure] {
+        mutate {
+            replace => {
+                "event.idm.read_only_udm.metadata.event_type" => "NETWORK_CONNECTION"
+                "event.idm.read_only_udm.metadata.product_name" => "edge-fw"
+                "event.idm.read_only_udm.principal.ip" => "%{srcAddr}"
+                "event.idm.read_only_udm.target.ip" => "%{dstAddr}"
+                "event.idm.read_only_udm.network.ip_protocol" => "%{protocol}"
+            }
+        }
+        mutate { convert => { "srcPort" => "uinteger" } }
+        mutate { rename => { "srcPort" => "event.idm.read_only_udm.principal.port" } }
+        mutate { convert => { "dstPort" => "uinteger" } }
+        mutate { rename => { "dstPort" => "event.idm.read_only_udm.target.port" } }
+        if [action] == "Denied" {
+            mutate { replace => { "event.idm.read_only_udm.security_result.action" => "BLOCK" } }
+        } else {
+            mutate { replace => { "event.idm.read_only_udm.security_result.action" => "ALLOW" } }
+        }
+        date { match => ["when", "MMM dd HH:mm:ss"] rebase => true }
+        mutate { merge => { "@output" => "event" } }
+    }
+}

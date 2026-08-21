@@ -5,16 +5,21 @@ compiles them to DuckDB SQL, and runs them against local fake event data.
 It's a local testbed: write and sanity-check queries/rules without a real
 Chronicle/SecOps backend.
 
-Two independent dialects are supported, each with its own parser and
-compiler:
+Three independent dialects are supported:
 
 1. **UDM search queries** -- the syntax typed into the SecOps search bar
    (`events:`/`match:`/`outcome:`/`dedup:`/`order:`/`limit:`, a single
-   implicit event stream).
+   implicit event stream), parsed and compiled to SQL.
 2. **YARA-L 2.0 rules** -- `rule name { meta: events: match: outcome:
    condition: options: }`, whose defining feature is multi-event
    correlation: several event variables (`$e1`, `$e2`, ...) joined on
-   shared placeholder values.
+   shared placeholder values, parsed and compiled to SQL.
+3. **SecOps parsers** -- the logstash-like `filter { ... }` language used
+   by Chronicle parsers to turn raw logs into UDM events
+   (`grok`/`json`/`kv`/`csv`/`mutate`/`date`/...). These are *interpreted*
+   (row-level stateful transforms, not SQL), and their output feeds
+   straight into `nudm.load_events` -- giving you the full local loop:
+   raw logs -> parser -> UDM events -> search queries/rules.
 
 ## Install
 
@@ -55,6 +60,15 @@ rule brute_force_login {
 }
 ''', conn)
 print(result)  # {"results": [{"user": "alice", "failedCount": 6}]}
+
+# 3) SecOps parser: raw logs -> UDM events -> search them
+parser_text = open("tests/fixtures/firewall_parser.txt").read()
+raw_logs = open("tests/fixtures/firewall_logs.txt").read().splitlines()
+events = nudm.run_parser(parser_text, raw_logs)
+conn = duckdb.connect()
+nudm.load_events(conn, events)
+result = nudm.search('security_result.action = "BLOCK"', conn)
+print(result)  # {"events": [...the two denied connections...]}
 ```
 
 `nudm.load_events` accepts a file path, raw JSON text, or an already-parsed
@@ -85,12 +99,18 @@ sql = nudm.compile_query(query, nudm.UDMSchema())
 # YARA-L rules
 rule = nudm.parse_rule(rule_text)
 sql = nudm.compile_rule(rule, nudm.UDMSchema())
+
+# SecOps parsers (interpreted, no SQL)
+parser = nudm.parse_parser(parser_text)
+events = nudm.run_parser(parser, raw_logs)
 ```
 
-`UDMQueryError`/`UDMRuleError` are raised on malformed syntax;
-`UDMCompileError` is raised for anything that parses but can't be
+`UDMQueryError`/`UDMRuleError`/`UDMParserError` are raised on malformed
+syntax; `UDMCompileError` is raised for anything that parses but can't be
 compiled (an unknown field, an invalid enum value, an unsupported
-function, ...).
+function, ...); `UDMParserExecError` is raised when a parser crashes at
+run time (an uninitialized field read, a plugin failure without
+`on_error`).
 
 ## REPL
 
@@ -155,6 +175,74 @@ Known, deliberate limitations:
   literal syntax instead. `if()` is the one function implemented in
   `outcome:` beyond the plain aggregates.
 
+## SecOps parser support: what's covered
+
+`nudm.run_parser` executes a `filter { ... }` program over raw log
+messages (strings, or dicts with a `message` key plus system variables
+like `@timestamp`) and returns UDM event dicts. Each raw message starts
+as `{"message": <raw>}`; plugins mutate that state; `merge => { "@output"
+=> "event" }` emits the event. Static `event.idm.read_only_udm.*` targets
+are validated against the UDM schema (unknown fields / invalid enum
+values raise `UDMCompileError`), and `repeated` UDM fields come out as
+arrays in the output so queries find them. `schema=False` disables both.
+
+- Plugins: `grok` (including `match_all`, `overwrite`, multiple patterns,
+  the full vendored Logstash v1.4.2 predefined pattern set), `json`
+  (including `array_function => "split_columns"`), `kv` (`field_split`,
+  `value_split`, `whitespace`, `trim_value`), `csv`, `date` (`ISO8601`,
+  `RFC3339`, `UNIX`, `UNIX_MS`, Java-style custom formats, `timezone`,
+  `rebase`, `target`), `base64`, `drop`, `statedump` (prints to stderr).
+- `mutate`: `convert` (`boolean`/`float`/`hash`/`integer`/`ipaddress`/
+  `macaddress`/`string`/`uinteger`/`hextodec`/`hextoascii`), `gsub`,
+  `lowercase`, `uppercase`, `merge`, `rename`, `replace` (with `%{token}`
+  interpolation), `remove_field`, `copy`, `split`. Within one block,
+  operations run in the Logstash-documented order (rename, replace,
+  convert, gsub, uppercase, lowercase, split, merge, copy, remove_field).
+- Conditionals: `if` / `else if` / `else`, operators `== != < > <= >= =~
+  !~ in`, `and`/`or`/`!`, parens, `[field][nested]` references.
+- `for item in arr`, `for index, item in arr`, `for key, value in obj map`
+  (including nesting).
+- `on_error => "flag"` on any plugin (flag is `true` on failure, `false`
+  on success; without it, failures raise `UDMParserExecError`).
+- Reading a field that was never set raises `UDMParserExecError` -- the
+  real engine crashes on uninitialized fields too; initialize everything
+  at the top of the parser.
+- Multi-event output (`event1.*`, `event2.*`, each merged into `@output`),
+  `merge` accumulation into repeated fields, the label key/value pattern.
+- The docs' double-backslash rule: string literals only resolve `\\` and
+  the quote character, so `"\\s"` reaches the regex engine as `\s`.
+
+Known, deliberate limitations:
+
+- **The `xml` plugin and `for ... in xml(...)` loops are not supported**
+  (no XPath engine) -- rejected at parse time.
+- Grok atomic groups `(?>...)` from the pattern file are compiled as
+  plain non-capturing groups (only pathological backtracking differs).
+- A bare `for x in obj` (no `map`) iterates values.
+- `statedump` prints state to stderr rather than raising a special
+  event.
+
+### Parser CLI
+
+```
+python -m nudm.logstash_cli -p tests/fixtures/firewall_parser.txt tests/fixtures/firewall_logs.txt
+python -m nudm.logstash_cli -p parser.txt raw_logs.json | jq .   # JSON list input
+cat raw_logs.txt | python -m nudm.logstash_cli -p parser.txt -   # stdin
+```
+
+Raw logs are read one-per-line (or as a JSON list of strings /
+`{"message": ...}` objects); output is a `{"events": [...]}` document in
+the same shape `nudm.load_events` accepts, so the two chain directly:
+
+```
+python -m nudm.logstash_cli -p parser.txt raw.txt > events.json
+python -m nudm.repl -e events.json
+```
+
+The grok pattern dictionary (`nudm/grok_patterns.txt`) is vendored from
+Logstash v1.4.2 (Apache 2.0), the exact version the parser syntax
+reference pins.
+
 ## Tests
 
 ```
@@ -178,4 +266,14 @@ uv run pytest
   JSON (snake_case -> camelCase).
 - `nudm/search.py` -- top-level `search()`/`run_rule()` convenience
   functions.
+- `nudm/logstash_grammar.py` / `nudm/logstash_parser.py` /
+  `nudm/logstash_nodes.py` -- SecOps parser (`filter { ... }`) PEG
+  grammar, parser, AST.
+- `nudm/logstash_exec.py` -- the parser interpreter (plugin execution,
+  conditionals, loops, `@output` collection, schema-aware validation and
+  repeated-field shaping).
+- `nudm/grok_patterns.py` / `nudm/grok_patterns.txt` -- grok -> regex
+  compiler and the vendored Logstash v1.4.2 pattern dictionary.
+- `nudm/logstash_cli.py` -- one-shot CLI: parser file + raw logs ->
+  `{"events": [...]}`.
 - `nudm/repl.py` -- interactive/piped CLI.

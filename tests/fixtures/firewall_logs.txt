@@ -1,0 +1,3 @@
+Mar 15 11:08:06 edge-fw-01: FW-112233: Denied connection TCP 10.100.123.45/9988 to 8.8.8.8/53
+Mar 15 11:09:12 edge-fw-01: FW-112234: Accepted connection UDP 10.100.123.46/51400 to 1.1.1.1/53
+Mar 15 11:10:03 edge-fw-01: FW-112235: Denied connection TCP 10.100.123.45/10443 to 8.8.4.4/443

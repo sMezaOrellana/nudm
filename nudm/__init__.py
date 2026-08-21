@@ -1,6 +1,8 @@
 """nudm: parse Google SecOps UDM search queries into an AST.
 
-Primary entry point: :func:`nudm.parse`.
+Primary entry points: :func:`nudm.parse` (UDM search queries),
+:func:`nudm.parse_rule` (YARA-L 2.0 rules) and :func:`nudm.parse_parser` /
+:func:`nudm.run_parser` (logstash-like raw-log -> UDM parsers).
 """
 from .nodes import (
     And,
@@ -22,6 +24,9 @@ from .nodes import (
 )
 from .duckdb_sql import UDMCompileError, compile_query
 from .fake_data import load_events, load_reference_list
+from .logstash_exec import UDMParserExecError, run_parser
+from .logstash_nodes import Parser as LogstashParser
+from .logstash_parser import UDMParserError, parse_parser
 from .parser import UDMQueryError, parse
 from .rule_nodes import EventCount, EventRef, Rule
 from .rule_parser import UDMRuleError, parse_rule
@@ -63,4 +68,10 @@ __all__ = [
     "Rule",
     "EventRef",
     "EventCount",
+    # SecOps parsers (logstash-like filter { ... } raw-log -> UDM pipelines)
+    "parse_parser",
+    "run_parser",
+    "UDMParserError",
+    "UDMParserExecError",
+    "LogstashParser",
 ]
